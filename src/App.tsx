@@ -1,7 +1,12 @@
 import './App.css'
 import { Box } from './components/usingHooks/contexts/Box'
 import { ThemeContextProvider } from './components/usingHooks/contexts/ctxProvider'
+import { User } from './components/usingHooks/contexts/withFutureValue/User'
+import { UserContextProvider } from './components/usingHooks/contexts/withFutureValue/UserContext'
 import { CounterExample } from './components/usingHooks/reducers/counterExample'
+import { DomRef } from './components/usingHooks/refs/DomRef'
+import { MutableRef } from './components/usingHooks/refs/MutableRef'
+import { TimerWithMutableRef } from './components/usingHooks/refs/TimerWithMutableRef'
 import { AuthedUser } from './components/usingHooks/states/AuthedUser'
 import { TypeAssertion } from './components/usingHooks/states/TypeAssertion'
 import { StateHooks } from './components/usingHooks/states/stateHooks'
@@ -71,6 +76,14 @@ function App() {
       <ThemeContextProvider>
         <Box />
       </ThemeContextProvider>
+
+      <UserContextProvider>
+        <User />
+      </UserContextProvider>
+
+      <DomRef />
+      <MutableRef />
+      <TimerWithMutableRef />
     </>
   )
 }
