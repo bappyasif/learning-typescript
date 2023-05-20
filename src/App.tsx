@@ -1,161 +1,85 @@
 import './App.css'
-import { TryingPolymorphism } from './components/polymorphic/Test'
-import { TryingMoreRefinedPolymorphism } from './components/polymorphic/Test2'
-import CounterWithClassComponent from './components/usingClass/Counter'
-import { Box } from './components/usingHooks/contexts/Box'
-import { ThemeContextProvider } from './components/usingHooks/contexts/ctxProvider'
-import { User } from './components/usingHooks/contexts/withFutureValue/User'
-import { UserContextProvider } from './components/usingHooks/contexts/withFutureValue/UserContext'
-import { CounterExample } from './components/usingHooks/reducers/counterExample'
-import { DomRef } from './components/usingHooks/refs/DomRef'
-import { MutableRef } from './components/usingHooks/refs/MutableRef'
-import { TimerWithMutableRef } from './components/usingHooks/refs/TimerWithMutableRef'
-import { AuthedUser } from './components/usingHooks/states/AuthedUser'
-import { TypeAssertion } from './components/usingHooks/states/TypeAssertion'
-import { StateHooks } from './components/usingHooks/states/stateHooks'
-import { NestedChildrens } from './components/usingProps/advancedProps/nestedChildrens'
-import { PassingChildren } from './components/usingProps/advancedProps/passingChildren'
-import { AdvancedPropTypes } from './components/usingProps/advancedProps/propsUnions'
-import { BasicPropTypes } from './components/usingProps/basicProps/basicPropTypes'
-import { Person } from './components/usingProps/basicProps/person'
-import { PersonList } from './components/usingProps/basicProps/personList'
-import { Private } from './components/usingProps/componentProps/Private'
-import { Secret } from './components/usingProps/componentProps/Secret'
-import ClickEvents from './components/usingProps/eventProps/clickEvents'
-import { InputEvents } from './components/usingProps/eventProps/inputEvents'
-import { GetFromAnotherComponent } from './components/usingProps/extractingProps/GetFromAnotherComponent'
-import { GenericList } from './components/usingProps/genericProps/List'
-import { BasicExample } from './components/usingProps/restrictiveProps/BasicExample'
-import { BasicExampleWithRestrictions } from './components/usingProps/restrictiveProps/BasicExampleWithRestriction'
-import { StyleProps } from './components/usingProps/styleProps'
-import { RestrictiveToast } from './components/usingTemplateLiterals/RestrictiveToast'
-import { ToastPlain } from './components/usingTemplateLiterals/ToastPlain'
-import { ButtonVariant } from './components/wrappingHtmlElements/ButtonVariant'
-import { CustomInput } from './components/wrappingHtmlElements/CustomInput'
-import { RestrictiveButton } from './components/wrappingHtmlElements/RestrictiveButton'
+
+// type alias
+type mathFunc = (a: number, b: number) => number
+
+// interface
+interface anotherMathFunc {
+  (a: number, b: number):  number
+}
+
+const MultAnother: anotherMathFunc = (a, b) => a * b
+
+const MultNums: mathFunc = (c, d) => c * d
 
 function App() {
-  const demoPerson = {
-    fName: "a", lName: "b"
+  const add = (a:number,b: number) => a + b
+  // const logMsg = (message:string) => console.log(message) // typescript inference
+  const logMsg = (message:string) :void => console.log(message) // specifying beforehand
+  logMsg("smdb")
+
+  const sub = function(a:number, b:number): number {
+    return a - b
   }
 
-  // const lists = [
-  //   { fN: "a", lN: "b" },
-  //   { fN: "A", lN: "B" }
-  // ]
+  // required parameters needs to come before optional parameters
+  const addAll = (a: number,b: number, c?: number) : number => {
+    if(typeof c !== "undefined") {
+      return a + b + c
+    }
 
-  const lists = [
-    { fName: "a", lName: "b" },
-    { fName: "A", lName: "B" }
-  ]
+    return a + b
+  }
+
+  const sumAll = (a: number,b: number, c: number = 2) : number => {
+    return a + b + c
+  }
+
+  // rest parameters
+  const totalSum = (...nums: number[]) : number => nums.reduce((prev,curr) => prev + curr)
+
+  const totalAdd = (a: number, ...nums: number[]) : number => a + nums.reduce((prev,curr) => prev + curr)
+
+  // never type , mostly used for error type function 
+  const showError = (errMsg: string): never => {throw Error(errMsg)}
+
+  // never type also be used for functioins containing infinite loops or as such
+  const inifnite = () => {
+    let i: number = 1;
+    while (true) i++
+  }
+
+  // to solve tha infite loop we can use a break and get a different return type other than never
+  const infiniteBreak = () => {
+    let i: number = 1;
+    while (true) {
+      i++
+      if(i >= 100) break
+    }
+
+  }
+
+  // custom typoe guard 
+  const isNumber = (val: any) => {
+    return val === "number" ? true : false
+  }
+
+  // useful never use case
+  const numOrStr = (val:number | string ) : string => {
+    if(typeof val === "string") return "string"
+    if(isNumber(val)) return "number"
+    return showError("this should never happen!!")
+  }
 
   return (
     <>
-      <BasicPropTypes test="test prop" counts={20} isLoggedIn={false} />
-      <Person pname={demoPerson} />
-      <PersonList lists={lists} />
-      <AdvancedPropTypes status='Success' />
-      <PassingChildren>
-        <>
-          <h2>Passed Children</h2>
-          <h2>Passed Children -- 2</h2>
-        </>
-      </PassingChildren>
-      <NestedChildrens optional='Optional Props'>
-        <PassingChildren>
-          <h2>Lets Goooooo</h2>
-        </PassingChildren>
-      </NestedChildrens>
-
-      <ClickEvents
-        clickEvent={() => console.log("button clicked!!")}
-        clickAccessEventValue={e => console.log(e.target)}
-        clickEventWithParam={(e, params) => console.log(e.target, params)}
-      />
-
-      <InputEvents
-        value='test'
-        handleChange={e => console.log(e.target.value)}
-      />
-
-      <StyleProps
-        styles={{ fontSize: "40px" }}
-      />
-
-      <StateHooks />
-      <AuthedUser />
-      <TypeAssertion />
-      <CounterExample />
-
-      <ThemeContextProvider>
-        <Box />
-      </ThemeContextProvider>
-
-      <UserContextProvider>
-        <User />
-      </UserContextProvider>
-
-      <DomRef />
-      <MutableRef />
-      <TimerWithMutableRef />
-      <CounterWithClassComponent message='Count Is: ' />
-
-      <Private isLoggedIn={true} component={Secret} />
-
-      {/* <GenericList
-        items={["apples", "sinnasappels", "druiven", "bananen"]}
-        clickHandler={item => console.log(item, "clicked!!")}
-      />
-
-      <GenericList
-        items={[22, 33, 44, 55]}
-        clickHandler={item => console.log(item, "clicked!!")}
-      /> */}
-
-      <GenericList
-        items={[
-          {id: 11, name: "ab"}, {id: 22, name: "AB"}
-        ]}
-        clickHandler={item => console.log(item, "clicked!!")}
-      />
-
-      <BasicExample value={22} isPositive isNegative isZero />
-      <BasicExampleWithRestrictions value={22} isPositive />
-      <BasicExampleWithRestrictions value={22} isNegative />
-      {/* <BasicExampleWithRestrictions value={22} isNegative isZero={true} /> */}
-
-      <ToastPlain position='center - center' />
-      <RestrictiveToast position='center' />
-
-      {/* <ButtonVariant variant='primary' /> */}
-      <ButtonVariant variant='secondary' onClick={() => console.log("clicked!!")}>Special</ButtonVariant>
-      <CustomInput />
-      <RestrictiveButton variant='secondary' onClick={() => console.log("clicked!!")}>
-        Valid As Type String
-        {/* <div>Invalid as Type Is Not A String</div> */}
-      </RestrictiveButton>
-
-      <GetFromAnotherComponent counts={22} test='ttys' isLoggedIn={true} />
-
-      <TryingPolymorphism as="h1" size='lg' color='primary'>
-        Heading
-      </TryingPolymorphism>
-      <TryingPolymorphism as="p" size='md' color='primary'>
-        Paragraph
-      </TryingPolymorphism>
-      <TryingPolymorphism as="label" size='sm' color='primary'>
-        Label
-      </TryingPolymorphism>
-
-      <TryingMoreRefinedPolymorphism as={"h1"} size='lg'>
-        Heading Another
-      </TryingMoreRefinedPolymorphism>
-      <TryingMoreRefinedPolymorphism as={"p"} size='md'>
-        Paragraph Another
-      </TryingMoreRefinedPolymorphism>
-      <TryingMoreRefinedPolymorphism as={"label"} htmlFor="someID" size='sm'>
-        Label Another
-      </TryingMoreRefinedPolymorphism>
+      <h1>New Hands On Tutorial!!</h1>
+      {add(2,4)}
+      {sub(2, 3)}
+      {MultNums(2, 2)}
+      {MultAnother(2, 2)}
+      {totalSum(1, 1, 2, 2)}
+      {totalAdd(1, 1, 2, 2)}
     </>
   )
 }
