@@ -5,7 +5,11 @@ import Section from "./components/Section"
 import { GenericsList } from "./components/GenericsList"
 import { UsingHooks } from "./components/UsingHooks"
 import { UsingReducer } from "./components/UsingReducer"
-import { UsingReducerVersionTwo } from "./components/UsingReducerAndContext"
+import { UsingReducerVersionTwo } from "./components/UsingReducerVersionTwo"
+import { UsingReducerWithContext } from "./components/UsingReducerWithContext"
+import { CounterProvider, initialState } from "./context/CounterCtx"
+import { UsingReducerAndContext } from "./components/UsingReducerAndContext"
+import { CounterContextProvider } from "./context/CounterContext"
 
 function App() {
   const [count, setCount] = useState<number>(1)
@@ -33,6 +37,18 @@ function App() {
       <UsingReducerVersionTwo>
         {(count: number) => <>Current Count : {count}</>}
       </UsingReducerVersionTwo>
+
+      <CounterProvider count={initialState.count} text={initialState.text}>
+        <UsingReducerWithContext>
+          {(count: number) => <>Current Count : {count}</>}
+        </UsingReducerWithContext>
+      </CounterProvider>
+
+      <CounterContextProvider>
+        <UsingReducerAndContext>
+          {(count: number) => <>Current Count : {count}</>}
+        </UsingReducerAndContext>
+      </CounterContextProvider>
     </>
   )
 }
