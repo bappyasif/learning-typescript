@@ -7,6 +7,9 @@ import { Section } from "./components/Section"
 import { List } from "./components/Generics"
 import ReactHooks from "./components/ReactHooks"
 import UsingReducers from "./components/hookUseReducer"
+import UsingReducersAndContext from "./components/hookUseContext"
+import { CounterCtxProvider, initState } from "./components/hookUseContext/context/CounterCtx"
+import PracticingUsingReducersWithContextHook from "./components/practicingHookUseContext"
 
 function App() {
   const [count, setCount] = useState<number>(1)
@@ -36,6 +39,12 @@ function App() {
       <ReactHooks />
 
       <UsingReducers />
+
+      <CounterCtxProvider count={initState.count} text={initState.text}>
+        <UsingReducersAndContext />
+      </CounterCtxProvider>
+
+      <PracticingUsingReducersWithContextHook />
     </>
   )
 }
