@@ -5,7 +5,7 @@ export const Skills = () => {
     const regularPercentiles = skills.filter(item => item.percentile < 85);
 
     return (
-        <div>
+        <div className="flex flex-col gap-20">
             <ShowHighPercentilesSkills data={highPercentiles} />
             <ShowRegulars data={regularPercentiles} />
         </div>
@@ -35,10 +35,12 @@ const ShowMetric = ({ ...item }: MetricProps) => {
     const { name, text, percentile } = item;
 
     return (
-        <div>
+        <div
+            className="w-1/4 mx-auto bg-slate-600 rounded-2xl text-4xl py-4"
+        >
             <h2>{name}</h2>
             <RadialProgressBar percentile={percentile} />
-            <p>{text}</p>
+            <p>{text} *</p>
         </div>
     )
 }
@@ -66,6 +68,7 @@ const RadialProgressBar = ({ percentile }: ProgressProps) => {
 
     return (
         <svg
+            className="mx-auto"
             height={radius * 2}
             width={radius * 2}
         >
@@ -75,13 +78,13 @@ const RadialProgressBar = ({ percentile }: ProgressProps) => {
                 strokeWidth={stroke}
                 strokeDasharray={circumference + ' ' + circumference}
                 style={{ strokeDashoffset }}
-                stroke-width={stroke}
+                // stroke-width={stroke}
                 r={normalizedRadius}
                 cx={radius}
                 cy={radius}
             />
             <text className="text-2xl"
-                x="50%" y="50%" text-anchor="middle" fill="white" dy=".3em">{percentile}%
+                x="50%" y="50%" textAnchor="middle" fill="white" dy=".3em">{percentile}%
             </text>
         </svg>
     )
@@ -91,7 +94,9 @@ const ShowRegulars = ({ data }: MetricsData) => {
     const showMetrics = () => data.map(item => <ShowSkillProgress name={item.name} percentile={item.percentile} text={item.text} key={item.name} />)
 
     return (
-        <div>
+        <div 
+            className="flex justify-center w-full flex-wrap gap-16 text-2xl"
+        >
             {showMetrics()}
         </div>
     )
@@ -100,10 +105,10 @@ const ShowRegulars = ({ data }: MetricsData) => {
 const ShowSkillProgress = ({ ...item }: MetricProps) => {
     const { name, text, percentile } = item;
     return (
-        <div>
+        <div className={`w-1/3`}>
             <h2>{name}</h2>
             <LinearProgressBar percentile={percentile} />
-            <p>{text}</p>
+            <p>Current {text} *</p>
         </div>
     )
 }

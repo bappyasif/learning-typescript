@@ -22,7 +22,9 @@ const Specials = () => {
     const renderFigs = () => figs.map(item => <RenderSpecial key={item.name} count={item.count} name={item.name} text={item.text} />)
 
     return (
-        <div>
+        <div 
+            className="flex justify-center flex-wrap gap-10"
+        >
             {renderFigs()}
         </div>
     )
@@ -32,7 +34,9 @@ const RenderSpecial = ({ ...item }: SpecialsProps) => {
     const { name, count, text } = item;
     // console.log(name, count)
     return (
-        <div>
+        <div 
+            className=""
+        >
             <h2>{name}</h2>
             <RenderCircleWithText count={count} />
             <p>{text}</p>
@@ -48,7 +52,7 @@ type SvgProps = {
 
 const RenderCircleWithText = ({ count }: SvgProps) => {
     return (
-        <svg>
+        <svg className="flex justify-center w-f">
             <RenderCircle />
             <RenderText count={count} />
         </svg>
@@ -58,7 +62,7 @@ const RenderCircleWithText = ({ count }: SvgProps) => {
 const RenderCircle = () => {
     return (
         <circle
-            cx="56" cy="53" r="50"
+            cx="151" cy="74" r="50"
             stroke="blue" strokeWidth="4" fill="transparent"
         />
     )
@@ -73,7 +77,7 @@ const RenderText = ({ count }: SvgProps) => {
     return (
         <text
             className="text-xl"
-            x="18%" y="36%" textAnchor="middle"
+            x="50%" y="50%" textAnchor="middle"
             fill="white" dy=".3em"
         >
             {total2} -- {total}

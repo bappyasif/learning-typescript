@@ -54,7 +54,7 @@ const ShowRoles = (): ReactElement => {
     const [newText, setNewText] = useState<string>("")
     const [waitBacktrack, setWaitBacktrack] = useState<boolean>(false)
     const [idx, setIdx] = useState<number>(0)
-    const [firstTime, setFirstTime] = useState<boolean>(true)
+    // const [firstTime, setFirstTime] = useState<boolean>(true)
 
     const forwardEntryText = () => {
         if (newText.length !== -1) {
@@ -142,4 +142,4 @@ const ShowRoles = (): ReactElement => {
     return content
 }
 
-const roles = ["Web Developer", "Frontend Developer", "Backend Developer", "Fullstack Developer", "SQA Automation", "Keen Learner"]
+const roles = ["Web Developer ", "Frontend Developer ", "Backend Developer ", "Fullstack Developer ", "SQA Automation ", "Keen Learner "]

@@ -17,7 +17,9 @@ export const Portfolio = () => {
 const Projects = () => {
 
     return (
-        <h2>
+        <div
+            className="flex flex-col justify-center items-center gap-6"
+        >
             <ReusableNoteableWorks
                 data={projects}
                 heading="Some Noteable Works - Fullstack / Frontend"
@@ -26,7 +28,7 @@ const Projects = () => {
                 data={designs}
                 heading="Responsive UI Design Prototypes"
             />
-        </h2>
+        </div>
     )
 }
 
@@ -58,22 +60,41 @@ const ReusableNoteableWorks = ({ data, heading }: ReusableProps) => {
     const renderProjects = () => data.map((item: ProjectProps) => <RenderWork key={item.name} description={item.description} live={item.live} name={item.name} repo={item.repo} imgSrc={item.imgSrc} />)
 
     return (
-        <div>
+        <div
+            className="flex flex-col justify-center items-center gap-6"
+        >
             <h2>{heading}</h2>
-            <div>{renderProjects()}</div>
+            <div
+                className="flex flex-col justify-center items-center gap-6 "
+            >
+                {renderProjects()}
+            </div>
         </div>
     )
 }
 
 const RenderWork = ({ ...item }: ProjectProps) => {
     const { name, repo, live, description, imgSrc } = item;
+
+    const check = () => {
+        let reverse = false;
+        if (["OdBo", "Myth Busters", "Animations Saavy", "Product Review Page"].includes(name)) {
+            reverse = true
+        }
+        return reverse
+    }
+
     return (
-        <article>
+        <article
+            className={`flex ${check() ? "flex-row-reverse" : "flex-row"} gap-4 items-center justify-center`}
+        >
             <ImageView imgSrc={imgSrc} description={description} live={item.live} />
-            <h2>{name}</h2>
-            <a href="">{repo}</a>
-            <a href="">{live}</a>
-            <p>{description}</p>
+            <div>
+                <h2>{name}</h2>
+                <a href="">{repo}</a>
+                <a href="">{live}</a>
+                <p>{description}</p>
+            </div>
         </article>
     )
 }
@@ -88,13 +109,15 @@ const ImageView = ({ imgSrc, description, live }: ImageProps) => {
     return (
         <figure
             className="relative"
+            onMouseEnter={handleMouseOver}
+            onMouseLeave={handleMouseOut}
         >
             <img
                 className="w-96 h-80"
                 src={imgSrc}
                 alt={description}
-                onMouseEnter={handleMouseOver}
-                onMouseLeave={handleMouseOut}
+            // onMouseEnter={handleMouseOver}
+            // onMouseLeave={handleMouseOut}
             />
             {
                 hovered
@@ -107,10 +130,10 @@ const ImageView = ({ imgSrc, description, live }: ImageProps) => {
 
 type ImgCardProp = Pick<ProjectProps, "live">
 
-const ShowImgCard = ({live}:ImgCardProp) => {
+const ShowImgCard = ({ live }: ImgCardProp) => {
 
     return (
-        <div 
+        <div
             className="absolute top-0 bg-blue-900 h-full w-full opacity-80"
         >
             <h2>Some Text is here about this project</h2>

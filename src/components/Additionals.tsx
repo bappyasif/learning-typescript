@@ -2,7 +2,9 @@ import { testimonials } from "./Portfolio/data"
 
 export const Additionals = () => {
     return (
-        <div>
+        <div
+            className="flex flex-col justify-center items-center gap-6 w-full"
+        >
             <RenderTestimonials />
             <ShowRecentBlogs />
             <HireMe />
@@ -78,7 +80,9 @@ const ShowRecentBlogs = () => {
     return (
         <div>
             <h2>Recent Blogs</h2>
-            <div>
+            <div
+            className="flex gap-4"
+            >
                 <img
                     className="h-80 w-96"
                     src="https://source.unsplash.com/random/?Cryptocurrency&1"
@@ -92,16 +96,21 @@ const ShowRecentBlogs = () => {
 
 const HireMe = () => {
     return (
-        <div>
-            <img
-                className="h-80 w-96"
-                src="https://source.unsplash.com/random/?Cryptocurrency&1"
-                alt=""
-            />
-            <div>
+        <div
+            className="w-full h-60 relative"
+        >
+            <div
+                className="absolute left-1/3 top-4 flex flex-col gap-6 text-blue-900 font-extrabold"
+            >
                 <h2>Im available for Freelance or Contractual or Fulltime or Valued Internships</h2>
                 <button>Hire Me</button>
             </div>
+            <img
+                className="w-full h-full"
+                src="https://source.unsplash.com/random/?Cryptocurrency&1"
+                alt=""
+            />
+            
         </div>
     )
 }

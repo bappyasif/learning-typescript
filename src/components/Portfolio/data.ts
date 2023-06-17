@@ -40,30 +40,3 @@ export const testimonials = [
     {text: "here is testimonial. it is so full of this and that and what not and some more. here is testimonial. it is so full of this and that and what not and some more. here is testimonial. it is so full of this and that and what not and some more", user: {name: "Hoxie", title: "none of your business", links: {profile: "github.com", twitter: "@handle"}}},
     {text: "here is testimonial. it is so full of this and that and what not and some more. here is testimonial. it is so full of this and that and what not and some more. here is testimonial. it is so full of this and that and what not and some more", user: {name: "Skyler", title: "none of your business", links: {profile: "github.com", twitter: "@handle"}}}
 ];
-
-export const formFields = [
-    {label: "Name", type: "text", placeholder: "You Name"},
-    {label: "Email", type: "email", placeholder: "You Email"},
-    {label: "Subject", type: "text", placeholder: "Subject"},
-    {label: "Message", type: "textarea", placeholder: "Message"}
-]
-
-export const footers = {
-    LearningSites: [
-        {name: "Free Code Camp", url: "www.freecodecamp.org"},
-        {name: "The Odin Project", url: "www.theodinproject.org"},
-        {name: "MDN", url: "www.mdn.org"},
-        {name: "Edx", url: "www.edx.org"},
-        {name: "Code Security", url: "www.owasp.org"},
-        {name: "Accessibility", url: "www.accessility.org"},
-        {name: "MongodbUniversity", url: "www.mongodb.org"}
-    ],
-    revrutingSites: [
-        {name: "Wellfound", url: "wellfound.org"},
-        {name: "YCombinator", url: "ycombinator.org"}
-    ],
-    sicials: [
-        {name: "Github", url: "github.com", icon: null},
-        {name: "Twitter", url: "twirtter.com", icon: null}
-    ]
-}

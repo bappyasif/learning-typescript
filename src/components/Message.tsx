@@ -1,12 +1,16 @@
-import { formFields } from "./Portfolio/data"
+// import { formFields } from "./Portfolio/data"
 
 export const MessageMe = () => {
     return (
-        <div>
+        <div
+        className="w-full h-fit"
+        >
             <h2>Write Me</h2>
-            <div>
+            <div
+                className="flex gap-6 w-full h-60"
+            >
                 <img
-                    className="h-80 w-96"
+                    className="w-1/2 h-full"
                     src="https://source.unsplash.com/random/?Cryptocurrency&1"
                     alt=""
                 />
@@ -47,3 +51,10 @@ const Fieldset = ({ ...item }: FieldsetProps) => {
         </fieldset>
     )
 }
+
+const formFields = [
+    { label: "Name", type: "text", placeholder: "You Name" },
+    { label: "Email", type: "email", placeholder: "You Email" },
+    { label: "Subject", type: "text", placeholder: "Subject" },
+    { label: "Message", type: "textarea", placeholder: "Message" }
+]

@@ -7,7 +7,6 @@ export const About = () => {
     return (
         <div className="flex flex-col items-center gap-6">
 
-            <Heading zIdx={zIdx} setZIdx={setZIdx} />
             <div className="flex gap-4 mt-6">
                 <img 
                 className="w-96" 
@@ -15,7 +14,10 @@ export const About = () => {
                 alt="picture" 
                 />
 
-                <div>
+                <div 
+                    className="w-2/3 mx-auto flex flex-col gap-4 justify-end items-center"
+                >
+                    <Heading zIdx={zIdx} setZIdx={setZIdx} />
                     <Details setZIdx={setZIdx} />
                     <Contacts setZIdx={setZIdx} />
                 </div>
@@ -47,6 +49,7 @@ const Contacts = ({setZIdx}: PropsType) => {
 
     return (
         <div 
+            className="self-start text-justify"
             onClick={bringHeadingTextFront}
             // onMouseEnter={bringHeadingTextFront}
             // onMouseLeave={bringHeadingTextFront}
@@ -89,11 +92,12 @@ const Details = ({setZIdx}: PropsType) => {
     
     return (
         <div
+            className="flex flex-col justify-start gap-2 items-start text-justify"
             onClick={bringHeadingTextFront}
             // onMouseEnter={bringHeadingTextFront}
             // onMouseLeave={bringHeadingTextFront}
         >
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque debitis repellat dolorem, voluptate blanditiis sit eveniet repellendus, unde placeat nobis dolore ad labore odio? Nam fugit eum architecto aut itaque.</p>
+            <p className="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque debitis repellat dolorem, voluptate blanditiis sit eveniet repellendus, unde placeat nobis dolore ad labore odio? Nam fugit eum architecto aut itaque.</p>
             <a className="text-xl text-blue-600 font-extrabold" href="#">Checkout my resume</a>
             <RenderLinks />
         </div>
@@ -172,14 +176,20 @@ const Heading = ({zIdx, setZIdx}: HeadingProps) => {
                     className={`relative text-7xl text-blue-950 opacity-90 
                 ${zIdx === true ? "z-20" : "z-0"}`}
                     style={{
-                        fontSize: "150px",
-                        transform: "translateX(31px) translateY(112px)"
+                        fontSize: "200px",
+                        // transform: "translateX(31px) translateY(112px)"
                     }}
                     onClick={handleOnClickSelectionOfText}
                 >
-                    AAAAA. BBBBBBB.</p>
+                    {/* AAAAA. BBBBBBB. */}
+                    ABOUT
+                </p>
                 <h2
-                    className={`relative text-6xl text-red-400 font-extrabold ${zIdx === true ? "z-0" : "z-20"} w-fit m-auto`}
+                    className={`relative text-7xl text-red-400 font-extrabold ${zIdx === true ? "z-0" : "z-20"} w-fit m-auto`}
+                    style={{
+                        // fontSize: "150px",
+                        transform: "translateX(0px) translateY(-144px)"
+                    }}
                 >Hello, I'm ab :)</h2>
             </div>
         </div>
