@@ -33,9 +33,21 @@ const Specials = () => {
 const RenderSpecial = ({ ...item }: SpecialsProps) => {
     const { name, count, text } = item;
     // console.log(name, count)
+    const adjustTopMargin = () => {
+        let str = "mt-0"
+        if(name === "HackerRank") {
+            str="mt-20"
+        } else if(name === "Open Source Contribution") {
+            str="mt-40"
+        } else if(name === "FCC Forum") {
+            str="mt-60"
+        }
+
+        return str;
+    }
     return (
         <div 
-            className=""
+            className={adjustTopMargin()}
         >
             <h2>{name}</h2>
             <RenderCircleWithText count={count} />

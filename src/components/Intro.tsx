@@ -24,7 +24,7 @@ const ShowName = (): ReactElement => {
     const [text, setText] = useState<string>("Asifuzzaman Bappy")
     const [className, setClassName] = useState<string>("dissolve-text")
 
-    const swapText = (): void => setText(prev => prev === "a.k.a.  A B" ? "Asifuzzaman Bappy" : "a.k.a.  A B")
+    const swapText = (): void => setText(prev => prev === "Originally From Bangladesh" ? "Asifuzzaman Bappy" : "Originally From Bangladesh")
 
     const swapClassname = (): void => setClassName(prev => prev === "dissolve-text" ? "reappear-text" : "dissolve-text")
 
@@ -39,9 +39,9 @@ const ShowName = (): ReactElement => {
     }, [])
 
     const content = (
-        <div className="flex gap-4">
-            <span>I'm</span>
-            <span className={className}>{text}</span>
+        <div className="flex gap-1 justify-between">
+            <span className="w-20 self-end">I'm</span>
+            <span className={`${className} w-80 self-start`}>{text}</span>
         </div>
     )
 

@@ -2,12 +2,15 @@ import { useState } from "react"
 import { Mentions } from "./Mentions"
 import { Skills } from "./Skills"
 import { designs, projects } from "./data"
+import { useForAccordionSlides } from "../../hooks"
 
 export const Portfolio = () => {
     return (
-        <div>
-            Portfolio
-            <Skills />
+        <div className="flex flex-col gap-20">
+            <div className="flex flex-col gap-6">
+                <h2>Some Noteable Skills</h2>
+                <Skills />
+            </div>
             <Mentions />
             <Projects />
         </div>
@@ -24,11 +27,60 @@ const Projects = () => {
                 data={projects}
                 heading="Some Noteable Works - Fullstack / Frontend"
             />
-            <ReusableNoteableWorks
+            {/* <ReusableNoteableWorks
+                data={designs}
+                heading="Responsive UI Design Prototypes"
+            /> */}
+            <AccordionView
                 data={designs}
                 heading="Responsive UI Design Prototypes"
             />
         </div>
+    )
+}
+
+const AccordionView = ({ data, heading }: ReusableProps) => {
+    const { cnInfo, handleNext, handlePrev } = useForAccordionSlides()
+
+    // const renderData = () => data.map((item: ProjectProps, idx: number) =>
+    //     // idx >= cnInfo.currSilde && idx <= cnInfo.nextSlide && 
+    //     (idx === cnInfo.currSilde || idx === cnInfo.nextSlide) &&
+    //     <RenderAccordionCardView key={item.name} description={item.description} imgSrc={item.imgSrc} live={item.live} name={item.name} repo={item.repo} />)
+
+    console.log(cnInfo, "cnInfo")
+
+    const item1 = data[cnInfo.currSilde]
+    const item2 = data[cnInfo.nextSlide]
+
+    return (
+        <div className="flex flex-col gap-4">
+            <h2>{heading}</h2>
+            <div className="flex gap-4 items-center">
+                <button className="bg-slate-800 px-4" onClick={handlePrev}>Prev</button>
+                {/* <div className="flex justify-around gap-20 flex-wrap">{renderData()}</div> */}
+                <div className="flex justify-around gap-20 flex-wrap">
+                    <RenderAccordionCardView key={item1.name} description={item1.description} imgSrc={item1.imgSrc} live={item1.live} name={item1.name} repo={item1.repo} />
+                    <RenderAccordionCardView key={item2.name} description={item2.description} imgSrc={item2.imgSrc} live={item2.live} name={item2.name} repo={item2.repo} />
+                </div>
+                <button className="bg-slate-800 px-4" onClick={handleNext}>Next</button>
+            </div>
+        </div>
+    )
+}
+
+const RenderAccordionCardView = ({ ...item }: ProjectProps) => {
+    const { description, imgSrc, live, name, repo } = item;
+
+    return (
+        <article className="flex flex-col justify-center items-center gap-6 w-1/3">
+            <ImageView
+                description={description} imgSrc={imgSrc} live={live}
+            />
+            <RenderProjectDetailInfo
+                description={description} live={live}
+                name={name} repo={repo}
+            />
+        </article>
     )
 }
 
@@ -88,14 +140,26 @@ const RenderWork = ({ ...item }: ProjectProps) => {
         <article
             className={`flex ${check() ? "flex-row-reverse" : "flex-row"} gap-4 items-center justify-center`}
         >
-            <ImageView imgSrc={imgSrc} description={description} live={item.live} />
-            <div>
-                <h2>{name}</h2>
-                <a href="">{repo}</a>
-                <a href="">{live}</a>
-                <p>{description}</p>
-            </div>
+            <ImageView imgSrc={imgSrc} description={description} live={live} />
+            <RenderProjectDetailInfo
+                description={description} live={live}
+                name={name} repo={repo}
+            />
         </article>
+    )
+}
+
+type DetailProps = Omit<ProjectProps, "imgSrc">
+
+const RenderProjectDetailInfo = ({ ...item }: DetailProps) => {
+    const { description, live, name, repo } = item;
+    return (
+        <div>
+            <h2>{name}</h2>
+            <a href="">{repo}</a>
+            <a href="">{live}</a>
+            <p>{description}</p>
+        </div>
     )
 }
 

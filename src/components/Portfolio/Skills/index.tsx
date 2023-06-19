@@ -5,7 +5,7 @@ export const Skills = () => {
     const regularPercentiles = skills.filter(item => item.percentile < 85);
 
     return (
-        <div className="flex flex-col gap-20">
+        <div className="flex flex-row justify-between gap-0 w-full">
             <ShowHighPercentilesSkills data={highPercentiles} />
             <ShowRegulars data={regularPercentiles} />
         </div>
@@ -25,7 +25,7 @@ type MetricsData = {
 const ShowHighPercentilesSkills = ({ data }: MetricsData) => {
     const renderMetrics = () => data?.map(item => <ShowMetric name={item.name} percentile={item.percentile} text={item.text} key={item.name} />)
     return (
-        <div className="flex gap-4 flex-wrap">
+        <div className="flex gap-1 flex-wrap w-1/2">
             {renderMetrics()}
         </div>
     )
@@ -36,7 +36,7 @@ const ShowMetric = ({ ...item }: MetricProps) => {
 
     return (
         <div
-            className="w-1/4 mx-auto bg-slate-600 rounded-2xl text-4xl py-4"
+            className="w-1/3 mx-auto bg-slate-600 rounded-2xl text-4xl py-4"
         >
             <h2>{name}</h2>
             <RadialProgressBar percentile={percentile} />
@@ -95,7 +95,7 @@ const ShowRegulars = ({ data }: MetricsData) => {
 
     return (
         <div 
-            className="flex justify-center w-full flex-wrap gap-16 text-2xl"
+            className="flex justify-center w-1/2 flex-wrap gap-16 text-2xl"
         >
             {showMetrics()}
         </div>

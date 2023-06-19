@@ -95,6 +95,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 100;
     }
@@ -115,4 +116,36 @@ body {
     transform: rotate(300deg);
     /* -webkit-transform: rotate(300deg); */
     color: #c6afaf;
+}
+
+.quotes__ql::before,
+.quotes__qr::after {
+    content: attr(content);
+    position: absolute;
+    font-size: 40px;
+}
+
+.quotes__ql::before {
+    margin-right: 11px;
+    top: -13px;
+    left: -27px;
+}
+
+.quotes__qr::after {
+    margin-left: 17px;
+}
+
+.pattern {
+    background-image: repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.114), rgba(255, 255, 255, 0.25) 1px, transparent 1px, transparent 6px);
+    animation: infinite alternate-reverse 4s 20s changeSize;
+}
+
+@keyframes changeSize {
+    from {
+        background-size: 27px 42px;
+    }
+
+    to {
+        background-size: 29px 42px;
+    }
 }

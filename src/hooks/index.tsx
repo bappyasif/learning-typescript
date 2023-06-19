@@ -39,6 +39,62 @@ export const useIncrementingCounter = (maxVal: number) => {
     return { total }
 }
 
+type CnPropsType = {
+    currSilde: number,
+    nextSlide: number
+}
+
+const initialCn: CnPropsType = {
+    currSilde: 0,
+    nextSlide: 1
+}
+
+export const useForAccordionSlides = () => {
+    const [cnInfo, setCnInfo] = useState<CnPropsType>(initialCn)
+
+    // const handleNext = () => {
+    //     if(cnInfo.nextSlide === 3) {
+    //         setCnInfo({currSilde: 0, nextSlide: 1})
+    //     } else {
+    //         setCnInfo(prev => ({currSilde: prev.currSilde + 1, nextSlide: prev.nextSlide + 1}))
+    //     }
+    // }
+
+    // const handlePrev = () => {
+    //     if(cnInfo.currSilde === 0) {
+    //         setCnInfo({currSilde: 2, nextSlide: 3})
+    //     } else {
+    //         setCnInfo(prev => ({currSilde: prev.currSilde - 1, nextSlide: prev.nextSlide - 1}))
+    //     }
+    // }
+
+    const handleNext = () => {
+        if (cnInfo.nextSlide === 3) {
+            setCnInfo({ currSilde: 3, nextSlide: 0 })
+        } else {
+            if (cnInfo.currSilde === 3) {
+                setCnInfo({ currSilde: 0, nextSlide: 1 })
+            } else {
+                setCnInfo(prev => ({ currSilde: prev.currSilde + 1, nextSlide: prev.nextSlide + 1 }))
+            }
+        }
+    }
+
+    const handlePrev = () => {
+        if (cnInfo.currSilde === 0) {
+            setCnInfo({ currSilde: 3, nextSlide: 0 })
+        } else {
+            if (cnInfo.currSilde === 3) {
+                setCnInfo({ currSilde: 2, nextSlide: 3 })
+            } else {
+                setCnInfo(prev => ({ currSilde: prev.currSilde - 1, nextSlide: prev.nextSlide - 1 }))
+            }
+        }
+    }
+
+    return { handleNext, handlePrev, cnInfo }
+}
+
 export const useOnPageScroll = () => {
     const [scrolled, setScrolled] = useState<number>(0);
 

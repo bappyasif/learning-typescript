@@ -1,4 +1,5 @@
 import { testimonials } from "./Portfolio/data"
+import { ImQuotesLeft, ImQuotesRight } from "react-icons/im"
 
 export const Additionals = () => {
     return (
@@ -30,9 +31,9 @@ const RenderTestimonials = () => {
     const renderTestimonies = () => testimonials.map(item => <ShowTestimony key={item.text} text={item.text} user={item.user} />)
 
     return (
-        <div>
+        <div className="flex flex-col gap-4">
             <h2>Testimonials</h2>
-            <div>{renderTestimonies()}</div>
+            <div className="flex flex-col gap-4">{renderTestimonies()}</div>
         </div>
     )
 }
@@ -41,8 +42,20 @@ const ShowTestimony = ({ ...item }: TestimonialProps) => {
     const { text, user } = item;
 
     return (
-        <div>
-            <h2>{text}</h2>
+        <div className="flex flex-col gap-4">
+            <h2
+                className="relative"
+            >
+                <span className="quotes__ql" content="“"></span>
+                <span className="text-justify">{text}</span>
+                <span className="quotes__qr" content="”"></span>
+            </h2>
+
+            {/* <h2 className="flex gap-4 text-justify">
+                <span><ImQuotesLeft /></span>
+                <span className="w-1/2 mx-auto">{text}</span>
+                <span className="self-end"><ImQuotesRight /></span>
+            </h2> */}
             <ShowUserDetails user={user} />
         </div>
     )
@@ -54,9 +67,11 @@ const ShowUserDetails = ({ user }: UserProps) => {
     const { name, title, links } = user;
 
     return (
-        <div>
-            <h2>{name}</h2>
-            <h3>{title}</h3>
+        <div className="flex flex-col gap-2">
+            <div>
+                <h2>{name}</h2>
+                <h3>{title}</h3>
+            </div>
             <ShowLinks
                 profile={links.profile}
                 twitter={links.twitter}
@@ -70,8 +85,14 @@ const ShowLinks = ({ ...items }: LinksProps) => {
 
     return (
         <div>
-            <p>{profile}</p>
-            <p>{twitter}</p>
+            <p>
+                <span>Profile: </span>
+                <span>{profile}</span>
+            </p>
+            <p>
+                <span>Twitter: </span>
+                <span>{twitter}</span>
+            </p>
         </div>
     )
 }
@@ -81,7 +102,7 @@ const ShowRecentBlogs = () => {
         <div>
             <h2>Recent Blogs</h2>
             <div
-            className="flex gap-4"
+                className="flex gap-4"
             >
                 <img
                     className="h-80 w-96"
@@ -97,20 +118,33 @@ const ShowRecentBlogs = () => {
 const HireMe = () => {
     return (
         <div
-            className="w-full h-60 relative"
-        >
-            <div
-                className="absolute left-1/3 top-4 flex flex-col gap-6 text-blue-900 font-extrabold"
+                // className="absolute left-1/3 top-4 flex flex-col gap-6 text-blue-900 font-extrabold"
+                className="pattern h-60 w-full flex flex-col justify-center items-center gap-6 text-blue-900 font-extrabold text-2xl"
             >
                 <h2>Im available for Freelance or Contractual or Fulltime or Valued Internships</h2>
                 <button>Hire Me</button>
             </div>
-            <img
-                className="w-full h-full"
-                src="https://source.unsplash.com/random/?Cryptocurrency&1"
-                alt=""
-            />
-            
-        </div>
     )
 }
+
+// const HireMe = () => {
+//     return (
+//         <div
+//             className="pattern w-full h-60 relative"
+//         >
+//             <div
+//                 // className="absolute left-1/3 top-4 flex flex-col gap-6 text-blue-900 font-extrabold"
+//                 className="flex flex-col justify-center items-center gap-6 text-blue-900 font-extrabold"
+//             >
+//                 <h2>Im available for Freelance or Contractual or Fulltime or Valued Internships</h2>
+//                 <button>Hire Me</button>
+//             </div>
+//             {/* <img
+//                 className="w-full h-full"
+//                 src="https://source.unsplash.com/random/?Cryptocurrency&1"
+//                 alt=""
+//             /> */}
+
+//         </div>
+//     )
+// }

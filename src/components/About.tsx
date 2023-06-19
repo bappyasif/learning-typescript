@@ -1,5 +1,9 @@
 import { ReactElement, useState } from "react"
 import { AiFillCode, AiFillFacebook, AiFillLinkedin, AiFillTwitterSquare } from "react-icons/ai"
+import fccLogo from "../assets/fcc-logo.png"
+import mdnLogo from "../assets/mdn-logo.jpg"
+import topLogo from "../assets/top-logo.png"
+import w3cLogo from "../assets/w3c-logo.png"
 
 export const About = () => {
     const [zIdx, setZIdx] = useState<boolean>(false)
@@ -28,11 +32,28 @@ export const About = () => {
 }
 
 const ShowContributingEntities = () => {
-    const renderEntities = () => contributes.map(item => <span key={item.name}>{item.name}</span>)
+    const renderEntities = () => contributes.map(item => <ContributedEntity key={item.name} name={item.name} imgSrc={item.imgSrc} />)
 
     return (
-        <div className="flex justify-between w-full">
-            {renderEntities()}
+        <div className="w-full">
+            <h2>Successfull Contributions</h2>
+            <div className="flex justify-between">
+                {renderEntities()}
+            </div>
+        </div>
+    )
+}
+
+type EntityProps = {
+    name: string,
+    imgSrc: string
+}
+
+const ContributedEntity = ({name, imgSrc}:EntityProps) => {
+    return (
+        <div title={name}>
+            {/* <span>{name}</span> */}
+            <img className="w-36 h-20" src={imgSrc} alt={name} />
         </div>
     )
 }
@@ -131,9 +152,9 @@ const RenderLink = ({ name, icon }: LinkPropsType) => {
     // const {icon, name} = item;
 
     return (
-        <div>
+        <div title={name}>
             <span>{icon}</span>
-            <span>{name}</span>
+            {/* <span>{name}</span> */}
         </div>
     )
 }
@@ -197,10 +218,10 @@ const Heading = ({zIdx, setZIdx}: HeadingProps) => {
 }
 
 const contributes = [
-    {name: "MDN"},
-    {name: "The Odin Project"},
-    {name: "W3C"},
-    {name: "FreeCodeCamp"}
+    {name: "MDN", imgSrc: mdnLogo},
+    {name: "The Odin Project", imgSrc: topLogo},
+    {name: "W3C", imgSrc: w3cLogo},
+    {name: "FreeCodeCamp", imgSrc: fccLogo}
 ]
 
 const contacts = [

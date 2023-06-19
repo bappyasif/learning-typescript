@@ -3,7 +3,8 @@ import testImg from "../../assets/react.svg"
 export const skills = [
     {name: "CSS", text: "Profeciency", percentile: 94},
     {name: "HTML", text: "Profeciency", percentile: 94},
-    {name: "CSS Frameworks", text: "Profeciency", percentile: 87},
+    {name: "TailwindCss", text: "Profeciency", percentile: 87},
+    {name: "MUI", text: "Profeciency", percentile: 87},
     {name: "Javascript", text: "Profeciency", percentile: 85},
     {name: "React", text: "Profeciency", percentile: 83},
     {name: "ExpressJS", text: "Profeciency", percentile: 80},

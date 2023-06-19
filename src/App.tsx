@@ -43,13 +43,15 @@ function App() {
       //   // overflow: 'scroll',
       // }}
       >
-        <Header />
-        <Intro />
-        <About />
-        <Portfolio />
-        <Additionals />
-        <MessageMe />
-        <Footer />
+        <div className="flex flex-col gap-20">
+          <Header />
+          <Intro />
+          <About />
+          <Portfolio />
+          <Additionals />
+          <MessageMe />
+          <Footer />
+        </div>
       </div>
     </>
   )
