@@ -3,14 +3,15 @@
 export const MessageMe = () => {
     return (
         <div
-        className="w-full"
+            id="Contact"
+            className="w-full flex flex-col gap-6"
         >
-            <h2>Write Me</h2>
+            <h2 className="text-4xl">Write Me</h2>
             <div
-                className="flex gap-6 w-full h-96"
+                className="flex gap-6 w-full h-96 text-lg"
             >
                 <img
-                    className="w-1/2 h-auto"
+                    className="h-auto"
                     src="https://source.unsplash.com/random/?Cryptocurrency&1"
                     alt=""
                 />
@@ -42,11 +43,11 @@ const Fieldset = ({ ...item }: FieldsetProps) => {
 
     return (
         <fieldset className="flex flex-col justify-start items-start">
-            <label htmlFor={label}>{label}</label>
+            <label htmlFor={label}>{label} *</label>
             {
                 label === "Message"
-                    ? <textarea name={label} id={label} cols={30} rows={4}></textarea>
-                    : <input id={label} type={type} placeholder={placeholder} />
+                    ? <textarea required={true} name={label} id={label} cols={30} rows={4}></textarea>
+                    : <input required={true} id={label} type={type} placeholder={placeholder} />
             }
         </fieldset>
     )

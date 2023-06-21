@@ -9,7 +9,10 @@ export const About = () => {
     const [zIdx, setZIdx] = useState<boolean>(false)
 
     return (
-        <div className="flex flex-col items-center gap-6">
+        <div
+            id="Resume" 
+            className="flex flex-col items-center gap-6"
+        >
 
             <div className="flex gap-4 mt-6">
                 <img 
@@ -19,7 +22,8 @@ export const About = () => {
                 />
 
                 <div 
-                    className="w-2/3 mx-auto flex flex-col gap-4 justify-end items-center"
+                    className="w-2/4 mx-auto flex flex-col gap-4 
+                    justify-end items-center "
                 >
                     <Heading zIdx={zIdx} setZIdx={setZIdx} />
                     <Details setZIdx={setZIdx} />
@@ -35,9 +39,9 @@ const ShowContributingEntities = () => {
     const renderEntities = () => contributes.map(item => <ContributedEntity key={item.name} name={item.name} imgSrc={item.imgSrc} />)
 
     return (
-        <div className="w-full">
-            <h2>Successfull Contributions</h2>
-            <div className="flex justify-between">
+        <div className="w-full flex flex-col gap-10">
+            <h2 className="text-4xl">Successfull Contributions</h2>
+            <div className="flex justify-between w-full">
                 {renderEntities()}
             </div>
         </div>
@@ -53,7 +57,7 @@ const ContributedEntity = ({name, imgSrc}:EntityProps) => {
     return (
         <div title={name}>
             {/* <span>{name}</span> */}
-            <img className="w-36 h-20" src={imgSrc} alt={name} />
+            <img className="w-44 h-20" src={imgSrc} alt={name} />
         </div>
     )
 }
@@ -113,13 +117,13 @@ const Details = ({setZIdx}: PropsType) => {
     
     return (
         <div
-            className="flex flex-col justify-start gap-2 items-start text-justify"
+            className="flex flex-col justify-start gap-2 items-start text-justify text-2xl"
             onClick={bringHeadingTextFront}
             // onMouseEnter={bringHeadingTextFront}
             // onMouseLeave={bringHeadingTextFront}
         >
             <p className="">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloremque debitis repellat dolorem, voluptate blanditiis sit eveniet repellendus, unde placeat nobis dolore ad labore odio? Nam fugit eum architecto aut itaque.</p>
-            <a className="text-xl text-blue-600 font-extrabold" href="#">Checkout my resume</a>
+            <a className="text-blue-600 font-extrabold" href="#">Checkout my resume</a>
             <RenderLinks />
         </div>
         
@@ -137,7 +141,7 @@ const Details = ({setZIdx}: PropsType) => {
 const RenderLinks = () => {
     const linkItems = () => socialLinks.map(item => <RenderLink key={item.name} icon={item.icon} name={item.name} />)
     return (
-        <div className="flex gap-4">
+        <div className="flex gap-4 text-xl">
             {linkItems()}
         </div>
     )

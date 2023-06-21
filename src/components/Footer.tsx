@@ -68,9 +68,9 @@ const RenderNavSection = ({ items, heading }: NavSectionProps) => {
     const renderItems = () => items?.map(item => <RenderNav key={item.name} name={item.name} url={item.url} icon={item.icon} />)
 
     return (
-        <div>
-            <h2>{heading}</h2>
-            <div>{renderItems()}</div>
+        <div className="flex flex-col gap-4">
+            <h2 className="text-2xl">{heading}</h2>
+            <div className="flex flex-col gap-2">{renderItems()}</div>
         </div>
     )
 }
@@ -79,9 +79,9 @@ const RenderNav = ({ ...item }: NavProps) => {
     const { name, url, icon } = item;
 
     return (
-        <div>
+        <div className="text-justify">
             <span>{icon}</span>
-            <a href={url}>{name}</a>
+            <a target="_blank" href={url}>{name}</a>
         </div>
     )
 }

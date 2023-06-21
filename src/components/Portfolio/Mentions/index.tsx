@@ -5,8 +5,8 @@ import { useIncrementingCounter } from "../../../hooks"
 export const Mentions = () => {
 
     return (
-        <div>
-            <h2>Special Mentions</h2>
+        <div id="Mentions">
+            <h2 className="text-4xl">Special Mentions</h2>
             <Specials />
         </div>
     )
@@ -23,7 +23,7 @@ const Specials = () => {
 
     return (
         <div 
-            className="flex justify-center flex-wrap gap-10"
+            className="flex justify-center flex-wrap gap-10 text-3xl"
         >
             {renderFigs()}
         </div>
@@ -36,11 +36,11 @@ const RenderSpecial = ({ ...item }: SpecialsProps) => {
     const adjustTopMargin = () => {
         let str = "mt-0"
         if(name === "HackerRank") {
-            str="mt-20"
+            str="mt-28"
         } else if(name === "Open Source Contribution") {
-            str="mt-40"
+            str="mt-48"
         } else if(name === "FCC Forum") {
-            str="mt-60"
+            str="mt-72"
         }
 
         return str;

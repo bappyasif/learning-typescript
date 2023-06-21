@@ -3,7 +3,10 @@ import { AiOutlineArrowDown } from "react-icons/ai"
 
 export const Intro = (): ReactElement => {
     const content = (
-        <div className="text-2xl flex flex-col gap-4 items-center justify-end">
+        <div
+            id="Home"
+            className="text-2xl flex flex-col gap-72 items-center justify-end"
+        >
             <ShowName />
             <ShowRoles />
             <PointingArrow />
@@ -14,7 +17,27 @@ export const Intro = (): ReactElement => {
 
 const PointingArrow = (): ReactElement => {
     const content = (
-        <div><AiOutlineArrowDown /></div>
+        <a
+            href="#Resume"
+            className="animate-pulse text-4xl relative 
+                border border-zinc-600 border-b-8 text-amber-300"
+        >
+            <span
+                style={{
+                    display: "block",
+                    width: "20px",
+                    height: "40px",
+                    borderLeft: "26px solid blue",
+                    borderRight: "26px solid yellow",
+                    borderBottom: "45px solid maroon"
+                }}
+            ></span>
+            <span
+                className="z-20 absolute -bottom-4 left-2 animate-bounce"
+            >
+                <AiOutlineArrowDown />
+            </span>
+        </a>
     )
 
     return content
@@ -77,9 +100,9 @@ const ShowRoles = (): ReactElement => {
 
     const decideWhichRole = () => {
         let text = ""
-        if(idx <= roles.length - 1) {
+        if (idx <= roles.length - 1) {
             setIdx(prev => {
-                if(prev === roles.length - 1) {
+                if (prev === roles.length - 1) {
                     return 0
                 } else {
                     return prev + 1
@@ -98,11 +121,6 @@ const ShowRoles = (): ReactElement => {
             setText("")
             setWaitBacktrack(true)
 
-            // if(firstTime) {
-            //     setIdx(1)
-            // }
-
-            // setNewText("New Text!!!!")
             setNewText(decideWhichRole())
         } else {
             setText(subTxt)
@@ -135,11 +153,11 @@ const ShowRoles = (): ReactElement => {
 
     const content = (
         <div className="test1234 relative text-4xl">
-            I'm a <span>{text}</span>
+            I'm a self taught <span>{text}</span>
         </div>
     )
 
     return content
 }
 
-const roles = ["Web Developer ", "Frontend Developer ", "Backend Developer ", "Fullstack Developer ", "SQA Automation ", "Keen Learner "]
+const roles = ["Web Developer ", "Frontend Developer ", "Backend Developer ", "Fullstack Developer ", "SQA Automation Engineer ", "Keen Learner "]

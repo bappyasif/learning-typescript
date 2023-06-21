@@ -5,7 +5,10 @@ export const Skills = () => {
     const regularPercentiles = skills.filter(item => item.percentile < 85);
 
     return (
-        <div className="flex flex-row justify-between gap-0 w-full">
+        <div
+            id="Skills" 
+            className="flex flex-row justify-between gap-0 w-full"
+        >
             <ShowHighPercentilesSkills data={highPercentiles} />
             <ShowRegulars data={regularPercentiles} />
         </div>

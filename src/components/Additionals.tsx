@@ -4,7 +4,8 @@ import { ImQuotesLeft, ImQuotesRight } from "react-icons/im"
 export const Additionals = () => {
     return (
         <div
-            className="flex flex-col justify-center items-center gap-6 w-full"
+            id="Testimonials"
+            className="flex flex-col justify-center items-center gap-20 w-full"
         >
             <RenderTestimonials />
             <ShowRecentBlogs />
@@ -32,8 +33,8 @@ const RenderTestimonials = () => {
 
     return (
         <div className="flex flex-col gap-4">
-            <h2>Testimonials</h2>
-            <div className="flex flex-col gap-4">{renderTestimonies()}</div>
+            <h2 className="text-4xl">Testimonials</h2>
+            <div className="flex flex-col gap-28">{renderTestimonies()}</div>
         </div>
     )
 }
@@ -44,7 +45,7 @@ const ShowTestimony = ({ ...item }: TestimonialProps) => {
     return (
         <div className="flex flex-col gap-4">
             <h2
-                className="relative"
+                className="relative w-1/2 mx-auto text-2xl"
             >
                 <span className="quotes__ql" content="“"></span>
                 <span className="text-justify">{text}</span>
@@ -67,9 +68,9 @@ const ShowUserDetails = ({ user }: UserProps) => {
     const { name, title, links } = user;
 
     return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 bg-slate-600 opacity-60 text-blue-200 w-fit mx-auto px-6 py-2 rounded-lg">
             <div>
-                <h2>{name}</h2>
+                <h2 className="text-xl">{name}</h2>
                 <h3>{title}</h3>
             </div>
             <ShowLinks
@@ -99,8 +100,8 @@ const ShowLinks = ({ ...items }: LinksProps) => {
 
 const ShowRecentBlogs = () => {
     return (
-        <div>
-            <h2>Recent Blogs</h2>
+        <div className="flex flex-col gap-6">
+            <h2 className="text-4xl">Recent Blogs</h2>
             <div
                 className="flex gap-4"
             >
@@ -119,10 +120,10 @@ const HireMe = () => {
     return (
         <div
                 // className="absolute left-1/3 top-4 flex flex-col gap-6 text-blue-900 font-extrabold"
-                className="pattern h-60 w-full flex flex-col justify-center items-center gap-6 text-blue-900 font-extrabold text-2xl"
+                className="pattern h-60 w-full flex flex-col justify-center items-center gap-6 text-blue-900 font-extrabold text-4xl"
             >
-                <h2>Im available for Freelance or Contractual or Fulltime or Valued Internships</h2>
-                <button>Hire Me</button>
+                <h2 className="">Im available for Freelance or Contractual or Fulltime or Valued Internships</h2>
+                <button className="bg-slate-400 px-6 py-2 flex items-baseline rounded-full">Hire Me</button>
             </div>
     )
 }

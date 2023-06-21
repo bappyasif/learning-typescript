@@ -6,9 +6,11 @@ import { useForAccordionSlides } from "../../hooks"
 
 export const Portfolio = () => {
     return (
-        <div className="flex flex-col gap-20">
+        <div
+            className="flex flex-col gap-20"
+        >
             <div className="flex flex-col gap-6">
-                <h2>Some Noteable Skills</h2>
+                <h2 className="text-4xl">Some Noteable Skills</h2>
                 <Skills />
             </div>
             <Mentions />
@@ -21,7 +23,8 @@ const Projects = () => {
 
     return (
         <div
-            className="flex flex-col justify-center items-center gap-6"
+            id="Portfolio" 
+            className="flex flex-col justify-center items-center gap-20"
         >
             <ReusableNoteableWorks
                 data={projects}
@@ -47,14 +50,14 @@ const AccordionView = ({ data, heading }: ReusableProps) => {
     //     (idx === cnInfo.currSilde || idx === cnInfo.nextSlide) &&
     //     <RenderAccordionCardView key={item.name} description={item.description} imgSrc={item.imgSrc} live={item.live} name={item.name} repo={item.repo} />)
 
-    console.log(cnInfo, "cnInfo")
+    // console.log(cnInfo, "cnInfo")
 
     const item1 = data[cnInfo.currSilde]
     const item2 = data[cnInfo.nextSlide]
 
     return (
-        <div className="flex flex-col gap-4">
-            <h2>{heading}</h2>
+        <div className="flex flex-col gap-20">
+            <h2 className="text-4xl">{heading}</h2>
             <div className="flex gap-4 items-center">
                 <button className="bg-slate-800 px-4" onClick={handlePrev}>Prev</button>
                 {/* <div className="flex justify-around gap-20 flex-wrap">{renderData()}</div> */}
@@ -113,9 +116,9 @@ const ReusableNoteableWorks = ({ data, heading }: ReusableProps) => {
 
     return (
         <div
-            className="flex flex-col justify-center items-center gap-6"
+            className="flex flex-col justify-center items-center gap-20"
         >
-            <h2>{heading}</h2>
+            <h2 className="text-4xl">{heading}</h2>
             <div
                 className="flex flex-col justify-center items-center gap-6 "
             >
@@ -154,11 +157,11 @@ type DetailProps = Omit<ProjectProps, "imgSrc">
 const RenderProjectDetailInfo = ({ ...item }: DetailProps) => {
     const { description, live, name, repo } = item;
     return (
-        <div>
-            <h2>{name}</h2>
+        <div className="text-xl">
+            <h2 className="text-4xl">{name}</h2>
             <a href="">{repo}</a>
             <a href="">{live}</a>
-            <p>{description}</p>
+            <p className="text-2xl">{description}</p>
         </div>
     )
 }
