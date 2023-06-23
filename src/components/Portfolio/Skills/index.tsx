@@ -39,9 +39,9 @@ const ShowMetric = ({ ...item }: MetricProps) => {
 
     return (
         <div
-            className="w-1/3 mx-auto bg-slate-600 rounded-2xl text-4xl py-4"
+            className="w-1/4 mx-auto bg-slate-600 rounded-2xl py-4"
         >
-            <h2>{name}</h2>
+            <h2 className="text-2xl">{name}</h2>
             <RadialProgressBar percentile={percentile} />
             <p>{text} *</p>
         </div>
@@ -109,9 +109,9 @@ const ShowSkillProgress = ({ ...item }: MetricProps) => {
     const { name, text, percentile } = item;
     return (
         <div className={`w-1/3`}>
-            <h2>{name}</h2>
+            <h2 className="text-xl">{name}</h2>
             <LinearProgressBar percentile={percentile} />
-            <p>Current {text} *</p>
+            <p className="text-sm">Current {text} *</p>
         </div>
     )
 }

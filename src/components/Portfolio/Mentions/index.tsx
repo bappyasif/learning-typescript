@@ -5,7 +5,7 @@ import { useIncrementingCounter } from "../../../hooks"
 export const Mentions = () => {
 
     return (
-        <div id="Mentions">
+        <div id="Mentions" className="flex flex-col gap-11">
             <h2 className="text-4xl">Special Mentions</h2>
             <Specials />
         </div>
@@ -23,7 +23,7 @@ const Specials = () => {
 
     return (
         <div 
-            className="flex justify-center flex-wrap gap-10 text-3xl"
+            className="flex justify-center flex-wrap gap-10 text-2xl"
         >
             {renderFigs()}
         </div>
@@ -37,10 +37,10 @@ const RenderSpecial = ({ ...item }: SpecialsProps) => {
         let str = "mt-0"
         if(name === "HackerRank") {
             str="mt-28"
-        } else if(name === "Open Source Contribution") {
-            str="mt-48"
+        } else if(name === "OSP Contributions") {
+            str="mt-60"
         } else if(name === "FCC Forum") {
-            str="mt-72"
+            str="mt-96"
         }
 
         return str;
@@ -64,7 +64,7 @@ type SvgProps = {
 
 const RenderCircleWithText = ({ count }: SvgProps) => {
     return (
-        <svg className="flex justify-center w-f">
+        <svg className="flex justify-center hover:animate-pulse">
             <RenderCircle />
             <RenderText count={count} />
         </svg>
@@ -74,7 +74,7 @@ const RenderCircleWithText = ({ count }: SvgProps) => {
 const RenderCircle = () => {
     return (
         <circle
-            cx="151" cy="74" r="50"
+            cx="151" cy="72" r="58"
             stroke="blue" strokeWidth="4" fill="transparent"
         />
     )
@@ -88,11 +88,12 @@ const RenderText = ({ count }: SvgProps) => {
 
     return (
         <text
-            className="text-xl"
+            className="text-3xl font-bold"
             x="50%" y="50%" textAnchor="middle"
-            fill="white" dy=".3em"
+            fill="teal" dy=".3em"
         >
-            {total2} -- {total}
+            {/* {total2} -- {total} */}
+            {total}
         </text>
     )
 }

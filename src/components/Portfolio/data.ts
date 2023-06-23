@@ -6,20 +6,23 @@ export const skills = [
     {name: "TailwindCss", text: "Profeciency", percentile: 87},
     {name: "MUI", text: "Profeciency", percentile: 87},
     {name: "Javascript", text: "Profeciency", percentile: 85},
-    {name: "React", text: "Profeciency", percentile: 83},
+    {name: "React", text: "Profeciency", percentile: 85},
     {name: "ExpressJS", text: "Profeciency", percentile: 80},
     {name: "NextJS", text: "Profeciency", percentile: 80},
     {name: "MongoDB", text: "Profeciency", percentile: 80},
     {name: "Authentications", text: "Profeciency", percentile: 80},
     {name: "MERN Stack", text: "Profeciency", percentile: 86},
-    {name: "Typescript", text: "Profeciency", percentile: 60},
-    {name: "Firebase", text: "Profeciency", percentile: 72}
+    {name: "Typescript", text: "Profeciency", percentile: 72},
+    {name: "Firebase", text: "Profeciency", percentile: 72},
+    {name: "React Queries", text: "Profeciency", percentile: 72},
+    {name: "Axios", text: "Profeciency", percentile: 72},
+    {name: "Next Auth", text: "Profeciency", percentile: 72}
 ];
 
 export const figs = [
     {name: "Github Repos", count: 127, text: "and more"},
     {name: "HackerRank", count: 4, text: "Stars and more"},
-    {name: "Open Source Contribution", count: 24, text: "Merges and more"},
+    {name: "OSP Contributions", count: 24, text: "Merges and more"},
     {name: "FCC Forum", count: 58, text: "Solutions and more"},
 ];
 
