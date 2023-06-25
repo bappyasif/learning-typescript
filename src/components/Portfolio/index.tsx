@@ -23,7 +23,7 @@ const Projects = () => {
 
     return (
         <div
-            id="Portfolio" 
+            id="Portfolio"
             className="flex flex-col justify-center items-center gap-20"
         >
             <ReusableNoteableWorks
@@ -157,10 +157,10 @@ type DetailProps = Omit<ProjectProps, "imgSrc">
 const RenderProjectDetailInfo = ({ ...item }: DetailProps) => {
     const { description, live, name, repo } = item;
     return (
-        <div className="text-xl">
+        <div className="w-3/4 text-xl flex flex-col gap-4">
             <h2 className="text-4xl">{name}</h2>
-            <a href="">{repo}</a>
-            <a href="">{live}</a>
+            <a href="">Repo: {repo}</a>
+            <a href="">Live: {live}</a>
             <p className="text-2xl">{description}</p>
         </div>
     )
@@ -179,6 +179,11 @@ const ImageView = ({ imgSrc, description, live }: ImageProps) => {
             onMouseEnter={handleMouseOver}
             onMouseLeave={handleMouseOut}
         >
+            {/* <video width="320" height="240" controls autoPlay>
+                <source src={imgSrc} type="video/mp4">
+                </source>
+            </video> */}
+
             <img
                 className="w-96 h-80"
                 src={imgSrc}

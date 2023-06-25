@@ -11,9 +11,9 @@ export const Header = (): ReactElement => {
   const openMenu = () => setShow(true);
 
   return (
-    <div className="flex justify-around text-4xl">
+    <div className="flex justify-between text-4xl mb-16">
         <p>Greetings :)</p>
-        <p onClick={openMenu}><AiOutlineMenuFold /></p>
+        <button onClick={openMenu}><AiOutlineMenuFold /></button>
         {
           show
           ? <Menu closeMenu={closeMenu} />

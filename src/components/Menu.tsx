@@ -9,7 +9,7 @@ export const Menu = ({ closeMenu }: MenuProp) => {
 
     return (
         <div
-            className="absolute pt-20 
+            className="absolute left-0 top-0 py-40 
             flex gap-10 justify-center items-center
             bg-slate-400 h-screen w-screen
            z-40"

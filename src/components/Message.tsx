@@ -1,24 +1,6 @@
 // import { formFields } from "./Portfolio/data"
-import { ChangeEvent, FormEvent, useState } from "react"
-
-// import Email from "https://smtpjs.com/v3/smtp.js"
-/// <reference path="EmailSmtpjs.d.ts" />
-// var user = new ThirdParty.User("abc");
-// console.log(user.getID());
-
-// import * as Email from "email"
-// import test = require("email")
-
-//@ts-ignore
-import {Email} from 'https://smtpjs.com/v3/smtp.js';
-// const Email = require("https://smtpjs.com/v3/smtp.js")
-
-/// <reference types="vite/client" />
-import * as URL from "url";
-// let myUrl = URL.parse("https://www.typescriptlang.org");
-
-//@ts-ignore
-// import {EmployeeProcessor} from "https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.js"
+import { ChangeEvent, FormEvent, useRef, useState } from "react"
+import emailjs from '@emailjs/browser';
 
 export const MessageMe = () => {
     return (
@@ -81,24 +63,67 @@ const Form = () => {
     //     Email?.send(config).then(() => console.log("email sent!!"))
     // }
 
-    const sendMail = async () => {
-        // const Email = new Email.send()
-        // Email?.send(config).then(() => console.log("email sent!!"))
-        // const test = Example.
-        // Email.send(config).then(() => console.log("email sent!!"))
-        // EmployeeProcessor
-    }
+    // const sendMail = async () => {
+    //     // const Email = new Email.send()
+    //     // Email?.send(config).then(() => console.log("email sent!!"))
+    //     // const test = Example.
+    //     Email.send(config).then(() => console.log("email sent!!"))
+    //     // EmployeeProcessor
+    // }
+
+    // const emailTransport = nodemailer.createTransport({
+    //     host: "smtp.elasticemail.com",
+    //     port: 2525,
+    //     secure: true, // upgrade later with STARTTLS
+    //     auth: {
+    //         user: import.meta.env.VITE_Username,
+    //         pass: import.meta.env.VITE_Password,
+    //     },
+    // })
+
+    // const sendEmail = () => {
+    //     const mailOptions = {
+    //         to: import.meta.env.VITE_TO,
+    //         from: formData.email,
+    //         subject: `This is the subject <<${formData.subject}>>`,
+    //         text: `And this is the body <<<<${formData.message}>>>>`
+    //     }
+    //     emailTransport.sendMail(mailOptions, err => {
+    //         if(err) {
+    //             console.log("Unable to send email", err)
+    //         } else {
+    //             console.log("Email is sent successfully")
+    //         }
+    //     })
+    // }
+
+    // const ref = useRef<HTMLFormElement | undefined>(null)
+    // const ref = useRef(null) ?? HTMLFormElement
+    const formRef = useRef<HTMLFormElement>(document.querySelector("form") as HTMLFormElement)
+
+    const sendEmail = () => {
+        emailjs.sendForm('service_s6nbnw8', 'template_osaw7h9', formRef.current, 'si9oOl75tTk-IxSI-')
+          .then((result) => {
+              console.log(result.text, "success!!");
+          }, (error) => {
+              console.log(error.text, "error!!");
+          });
+      };
 
     const handleSubmit = (evt: FormEvent<HTMLFormElement>): void => {
         evt.preventDefault()
-        console.log(formData, "FORM DA^TA", config)
-        sendMail();
+        console.log(formData, "FORM DA^TA")
+        // console.log(formData, "FORM DA^TA", config)
+        // sendMail();
+        // sendEmail()
+        sendEmail();
     }
 
     const renderFieldsets = () => formFields.map(item => <Fieldset label={item.label} placeholder={item.placeholder} type={item.type} key={item.label} handleInput={handleUserInputs} />)
 
     return (
         <form
+            ref={formRef}
             className="h-full w-1/3 flex flex-col gap-4"
             action=""
             onSubmit={handleSubmit}
