@@ -95,6 +95,38 @@ export const useForAccordionSlides = () => {
     return { handleNext, handlePrev, cnInfo }
 }
 
+export const useHandlePercentileCount = (percentile: number) => {
+    const [currPercentile, setCurrPercentile] = useState<number>(0)
+
+    const [begin, setBegin] = useState<boolean>(false)
+
+    const handleBegin = () => setBegin(true);
+
+    const handleStop = () => setBegin(false);
+
+    const incrementPercentileCount = () => {
+        const timer = setTimeout(() => {
+            console.log(currPercentile, percentile, currPercentile < percentile, timer)
+            if (currPercentile < percentile) {
+                setCurrPercentile(prev => prev + 1)
+            } else {
+                clearTimeout(timer)
+            }
+        }, 6)
+
+        return () => clearTimeout(timer)
+    }
+
+    // console.log(currPercentile, percentile)
+
+    useEffect(() => {
+        begin && incrementPercentileCount()
+        !begin && setCurrPercentile(0)
+    }, [begin, currPercentile])
+
+    return { currPercentile, handleBegin, handleStop}
+}
+
 export const useOnPageScroll = () => {
     const [scrolled, setScrolled] = useState<number>(0);
 

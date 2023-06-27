@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { skills } from "../data"
+import { useHandlePercentileCount } from "../../../hooks";
 
 export const Skills = () => {
     const highPercentiles = skills.filter(item => item.percentile >= 85);
@@ -6,7 +8,7 @@ export const Skills = () => {
 
     return (
         <div
-            id="Skills" 
+            id="Skills"
             className="flex flex-row justify-between gap-0 w-full"
         >
             <ShowHighPercentilesSkills data={highPercentiles} />
@@ -37,12 +39,18 @@ const ShowHighPercentilesSkills = ({ data }: MetricsData) => {
 const ShowMetric = ({ ...item }: MetricProps) => {
     const { name, text, percentile } = item;
 
+    const {currPercentile, handleBegin, handleStop} = useHandlePercentileCount(percentile)
+    
     return (
         <div
             className="w-1/4 mx-auto bg-slate-600 rounded-2xl py-4"
+            // onClick={handleToggle}
+            onMouseEnter={handleBegin}
+            onMouseLeave={handleStop}
         >
             <h2 className="text-2xl">{name}</h2>
-            <RadialProgressBar percentile={percentile} />
+            {/* <RadialProgressBar percentile={percentile} /> */}
+            <RadialProgressBar percentile={ currPercentile || percentile} />
             <p>{text} *</p>
         </div>
     )
@@ -61,6 +69,7 @@ The second one allows you to move the starting point of this dash-gap sequence a
 * stroke-dasharray lets you specify the length of the rendered part of the line, then the length of the gap. stroke-dashoffset lets you change where the dasharray starts.
  */
 const RadialProgressBar = ({ percentile }: ProgressProps) => {
+
     const radius = 60;
     const stroke = 8
 
@@ -97,7 +106,7 @@ const ShowRegulars = ({ data }: MetricsData) => {
     const showMetrics = () => data.map(item => <ShowSkillProgress name={item.name} percentile={item.percentile} text={item.text} key={item.name} />)
 
     return (
-        <div 
+        <div
             className="flex justify-center w-1/2 flex-wrap gap-16 text-2xl"
         >
             {showMetrics()}
@@ -107,10 +116,18 @@ const ShowRegulars = ({ data }: MetricsData) => {
 
 const ShowSkillProgress = ({ ...item }: MetricProps) => {
     const { name, text, percentile } = item;
+
+    const {currPercentile, handleBegin, handleStop} = useHandlePercentileCount(percentile)
+
     return (
-        <div className={`w-1/3`}>
+        <div 
+            className={`w-1/3`}
+            onMouseEnter={handleBegin}
+            onMouseLeave={handleStop}
+        >
             <h2 className="text-xl">{name}</h2>
-            <LinearProgressBar percentile={percentile} />
+            {/* <LinearProgressBar percentile={percentile} /> */}
+            <LinearProgressBar percentile={ currPercentile || percentile} />
             <p className="text-sm">Current {text} *</p>
         </div>
     )
