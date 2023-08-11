@@ -4,11 +4,27 @@ const DATA_SOURCE_URL = "https://jsonplaceholder.typicode.com/todos"
 
 const SECRET_KEY:string = process.env.DATA_SECRET_KEY as string
 
-export async function GET() {
-    const resp = await fetch(DATA_SOURCE_URL)
-    const data:Todo[] = await resp.json()
-    return NextResponse.json({data})
+// export async function GET() {
+//     const resp = await fetch(DATA_SOURCE_URL)
+//     const data:Todo[] = await resp.json()
+//     return NextResponse.json({data})
+// }
+
+export async function GET(request: Request) {
+    const origin = request.headers.get('origin')
+
+    const res = await fetch(DATA_SOURCE_URL)
+
+    const todos: Todo[] = await res.json()
+
+    return new NextResponse(JSON.stringify(todos), {
+        headers: {
+            'Access-Control-Allow-Origin': origin || "*",
+            'Content-Type': 'application/json',
+        }
+    })
 }
+
 
 export async function DELETE(request:Request) {
     const {id}:Partial<Todo> = await request.json()
