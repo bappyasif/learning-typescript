@@ -32,7 +32,8 @@
     {
       "userId": 1,
       "title": "aa",
-      "id": 6
+      "id": 6,
+      "completed": false
     }
   ]
 }

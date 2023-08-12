@@ -1,8 +1,9 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useState, useTransition, FormEvent, ChangeEvent } from 'react'
+import { useState, useTransition, FormEvent, ChangeEvent, useEffect } from 'react'
 import { usePathname } from "next/navigation"
+import onDemandReValidation from "@/lib/onDemandReVaildation"
 
 const initState: Partial<Todo> = {
     userId: 1,
@@ -56,7 +57,10 @@ export default function AddTodo() {
                 // client-side browser or React state.
                 router.refresh()
             }
+            // onDemandReValidation()
         })
+
+        // onDemandReValidation()
     }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -68,6 +72,10 @@ export default function AddTodo() {
             [name]: e.target.value
         }))
     }
+
+    useEffect(() => {
+        onDemandReValidation()
+    }, [data])
 
     const content = (
         <form onSubmit={handleSubmit} className="flex gap-2 items-center" style={{ opacity: !isMutating ? 1 : 0.7 }}>

@@ -4,6 +4,7 @@ import { FaTrash } from "react-icons/fa"
 import { useRouter } from 'next/navigation'
 import { useState, useTransition, ChangeEvent, MouseEvent, useEffect } from 'react'
 import Link from "next/link"
+import onDemandReValidation from "@/lib/onDemandReVaildation"
 
 export default function Todo(todo: Todo) {
     const router = useRouter()
@@ -34,6 +35,8 @@ export default function Todo(todo: Todo) {
             // from the server without losing 
             // client-side browser or React state.
             router.refresh()
+
+            onDemandReValidation()
         })
     }
 
@@ -59,6 +62,8 @@ export default function Todo(todo: Todo) {
             // from the server without losing 
             // client-side browser or React state.
             router.refresh()
+
+            onDemandReValidation()
         })
     }
 
@@ -66,6 +71,8 @@ export default function Todo(todo: Todo) {
     // useEffect(() => {
     //     router.refresh()
     // }, [])
+
+    // console.log(todo, "todo!!")
 
     return (
         <article className="my-4 flex justify-between items-center" style={{ opacity: !isMutating ? 1 : 0.7 }}>
