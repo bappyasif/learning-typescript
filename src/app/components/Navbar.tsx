@@ -8,8 +8,6 @@ export default function Navbar() {
                     <Link href="/" className="text-white/90 no-underline hover:text-white">Next Todos</Link>
                 </h1>
 
-                <Link href="/add" className="text-2xl text-white/90 no-underline hover:text-white">Add</Link>
-
             </div>
         </nav>
     )

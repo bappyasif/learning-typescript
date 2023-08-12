@@ -2,18 +2,6 @@
   "todos": [
     {
       "userId": 1,
-      "title": "Wave hello! 👋",
-      "completed": false,
-      "id": 1
-    },
-    {
-      "userId": 1,
-      "title": "Get Coffee ☕☕☕",
-      "completed": false,
-      "id": 2
-    },
-    {
-      "userId": 1,
       "title": "Go to Work ⚒",
       "completed": false,
       "id": 3
@@ -26,14 +14,21 @@
     },
     {
       "userId": 1,
-      "title": "a",
-      "id": 5
+      "title": "hey hey",
+      "id": 5,
+      "completed": false
     },
     {
       "userId": 1,
-      "title": "aa",
-      "id": 6,
-      "completed": false
+      "title": "Vacation! 🌴",
+      "completed": true,
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "title": "new todo",
+      "completed": true,
+      "id": 7
     }
   ]
 }

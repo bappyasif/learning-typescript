@@ -1,91 +1,14 @@
-"use client"
 
-import { useRouter } from "next/navigation"
-import { useState, useTransition, FormEvent, ChangeEvent, useEffect } from 'react'
-import { usePathname } from "next/navigation"
-import onDemandReValidation from "@/lib/onDemandReVaildation"
-
-const initState: Partial<Todo> = {
-    userId: 1,
-    title: "",
-}
+import { addTodo } from "@/lib/actions"
 
 export default function AddTodo() {
-    const router = useRouter()
-    const pathname = usePathname()
-    const [isPending, startTransition] = useTransition()
-    const [isFetching, setIsFetching] = useState(false)
-    const [data, setData] = useState(initState)
-
-    const isMutating = isFetching || isPending
-
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-
-        const { userId, title } = data
-
-        setIsFetching(true)
-
-        const res = await fetch(`http://127.0.0.1:3500/todos`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            // cache: 'no-store',
-            body: JSON.stringify({
-                userId, title
-            })
-        })
-
-        await res.json()
-
-        setIsFetching(false)
-
-        setData(prevData => ({
-            ...prevData,
-            title: ""
-        }))
-
-        startTransition(() => {
-            if (pathname === "/add") {
-                router.push('/')
-                // by doing that we are revalidating data to fetch again fresh batch so that it also includes newly added data
-                router.refresh()
-            } else {
-                // Refresh the current route and fetch new data 
-                // from the server without losing 
-                // client-side browser or React state.
-                router.refresh()
-            }
-            // onDemandReValidation()
-        })
-
-        // onDemandReValidation()
-    }
-
-    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-
-        const name = e.target.name
-
-        setData(prevData => ({
-            ...prevData,
-            [name]: e.target.value
-        }))
-    }
-
-    useEffect(() => {
-        onDemandReValidation()
-    }, [data])
 
     const content = (
-        <form onSubmit={handleSubmit} className="flex gap-2 items-center" style={{ opacity: !isMutating ? 1 : 0.7 }}>
+        <form action={addTodo} className="flex gap-2 items-center">
 
             <input
                 type="text"
-                id="title"
                 name="title"
-                value={data.title}
-                onChange={handleChange}
                 className="text-2xl p-1 rounded-lg flex-grow w-full"
                 placeholder="New Todo"
                 autoFocus
@@ -95,7 +18,7 @@ export default function AddTodo() {
                 Submit
             </button>
 
-        </form>
+        </form >
     )
 
     return content

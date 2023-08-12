@@ -1,28 +1,25 @@
 import Todo from "./Todo"
 import fetchTodos from "@/lib/fetchTodos"
-// import { useRouter } from "next/navigation"
-// import { useEffect } from "react"
-
-// export const dynamic = 'force-dynamic'
 
 export default async function TodoList() {
     const todos = await fetchTodos()
 
-    // const router = useRouter()
+    let content
+    if (!todos || todos.length === 0) {
+        content = (
+            <p>No Todos Available</p>
+        )
+    } else {
+        const sortedTodos = todos.reverse()
 
-    const sortedTodos = todos.reverse()
-
-    // useEffect(() => {
-    //     router.refresh()
-    // }, [])
-
-    const content = (
-        <>
-            {sortedTodos.map(todo => (
-                <Todo key={todo.id} {...todo} />
-            ))}
-        </>
-    )
+        content = (
+            <>
+                {sortedTodos.map(todo => (
+                    <Todo key={todo.id} {...todo} />
+                ))}
+            </>
+        )
+    }
 
     return content
 }

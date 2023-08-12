@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "jsonServer": "json-server -w -p 3500 db.json"
+    "jsonServer": "json-server -w db.json -p 3500 -H 127.0.0.1"
   },
   "dependencies": {
     "@types/node": "20.4.10",
