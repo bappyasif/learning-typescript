@@ -1,13 +1,9 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
 import Navbar from './components/Navbar'
-import AuthProvider from './context/AuthProvider'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'NextAuth Tutorial',
-  description: 'Learn NextAuth.js',
+  title: 'Kinde Auth',
+  description: 'Kinde Auth with Next.js App Router',
 }
 
 export default function RootLayout({
@@ -17,13 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <AuthProvider>
-          <Navbar />
-          <main className="flex justify-center items-start p-6 min-h-screen">
-            {children}
-          </main>
-        </AuthProvider>
+      <body className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex flex-col grow">
+          {children}
+        </main>
       </body>
     </html>
   )
