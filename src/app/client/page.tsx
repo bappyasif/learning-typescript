@@ -13,9 +13,14 @@ export default function ClientPage() {
         }
     })
 
+    // we can alternatively handle this from middleware so that we dont have to use same kind of code for every components
+    // if(session?.user.role !== "admin" && session?.user.role !== "manager")  {
+    //     return <h1>Access Denied</h1>
+    // }
+
     return (
         <section className="flex flex-col gap-6">
-            <UserCard user={session?.user} pagetype={"Client"} />
+            {session?.user ? <UserCard user={session.user} pagetype={"Client"} /> : null}
         </section>
     )
 }

@@ -1,10 +1,10 @@
 import Image from "next/image"
-
-type User = {
-    name?: string | null | undefined;
-    email?: string | null | undefined;
-    image?: string | null | undefined;
-} | undefined
+import { User } from "next-auth"
+// type User = {
+//     name?: string | null | undefined;
+//     email?: string | null | undefined;
+//     image?: string | null | undefined;
+// } | undefined
 
 type Props = {
     user: User,
@@ -44,6 +44,7 @@ export default function Card({ user, pagetype }: Props) {
             {/* {emailDisplay} */}
             {userImage}
             <p className="text-2xl text-center">{pagetype} Page!</p>
+            <p className="text-2xl text-center">User Role: {user.role}</p>
         </section>
     )
 }
