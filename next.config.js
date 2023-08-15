@@ -19,7 +19,7 @@ const nextConfig = {
             //     //in my case i used cdn.pixabay.com
             // },
         ],
-        domains: ["images.unsplash.com", "source.unsplash.com"]
+        domains: ["images.unsplash.com", "source.unsplash.com", "unsplash.com"]
     },
 }
 

@@ -1,19 +1,17 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
   return (
     <>
-      <h1 className="text-5xl">Public Home Page</h1>
-      <Image
-        src={"https://source.unsplash.com/random/beautiful"}
-        alt="a random picture from unsplash api"
-        width={650}
-        height={366}
-        // loading="lazy"
-        // sizes="(min-width: 808px) 50vw, 100vw"
-        sizes="(min-width: 1300px) 650px, (min-width: 820px) 49.35vw, (min-width: 760px) 650px, calc(93.18vw - 40px)"
-        priority={true}
-      />
+      <div className="flex flex-col items-center justify-center gap-y-4">
+        <h1 className="text-5xl">Public Home Page</h1>
+        <h2 className="text-2xl">Images Rendering</h2>
+        <div className="text-4xl flex gap-4 justify-between">
+          <Link className="bg-slate-600 px-4 rounded" href={"/static"} >Static</Link>
+          <Link className="bg-slate-600 px-4 rounded" href={"/dynamic"}>Dynamic</Link>
+          <Link className="bg-slate-600 px-4 rounded" href={"/gallery"}>Gallery</Link>
+        </div>
+      </div>
     </>
   )
 }
