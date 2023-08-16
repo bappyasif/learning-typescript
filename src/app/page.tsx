@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeChanger } from "./components/ThemeChanger";
 
 export default async function Home() {
   return (
@@ -11,6 +12,9 @@ export default async function Home() {
           <Link className="bg-slate-600 px-4 rounded" href={"/dynamic"}>Dynamic</Link>
           <Link className="bg-slate-600 px-4 rounded" href={"/gallery"}>Gallery</Link>
         </div>
+
+        <h2>Using Contexts</h2>
+        <ThemeChanger />
       </div>
     </>
   )

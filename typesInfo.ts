@@ -48,3 +48,23 @@ const testBetterGeneric: IGenericPost<ExtraProps> = {
     id: 11,
     title: "title"
 }
+
+interface IUser {
+    id:number,
+    name: string
+}
+
+interface DeptUser extends IUser {
+    dept: string
+}
+
+const iUserTest: IUser = {
+    id: 11,
+    name: "some user"
+}
+
+const deptUserTest: DeptUser = {
+    dept: "department",
+    id: 22,
+    name: "some name"
+}
