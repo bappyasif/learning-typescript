@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ThemeChanger } from "./components/ThemeChanger";
+import UsingRefs from "./components/UsingRefs";
 
 export default async function Home() {
   return (
@@ -15,6 +16,9 @@ export default async function Home() {
 
         <h2>Using Contexts</h2>
         <ThemeChanger />
+
+        <h2>Using Refs</h2>
+        <UsingRefs />
       </div>
     </>
   )
