@@ -1,9 +1,11 @@
-import { CarProps } from "@/types";
+import { CarProps, FilterProps } from "@/types";
 
-export async function fetchCars() {
-    // const { manufacturer, year, model, limit, fuel } = filters;
+export async function fetchCars(filters: FilterProps) {
+    const { manufacturer, year, model, limit, fuel } = filters;
 
-    console.log("FETCHING")
+    // console.log(filters?.manufacturer, filters)
+
+    // console.log("FETCHING")
 
     // Set the required headers for the API request
     const headers: HeadersInit = {
@@ -13,10 +15,11 @@ export async function fetchCars() {
 
     // Set the required headers for the API request
     const response = await fetch(
-        //   `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+        `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${manufacturer}&year=${year}&model=${model}&limit=${limit}&fuel_type=${fuel}`,
+        // `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${filters?.manufacturer}&year=${filters?.year}&model=${filters?.model}&limit=${filters?.limit}&fuel_type=${filters?.fuel}`,
         // `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla`,
         // `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=carrera`,
-        `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3`,
+        // `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3`,
         {
             headers: headers,
         }
@@ -25,7 +28,7 @@ export async function fetchCars() {
     // Parse the response as JSON
     const result = await response.json();
 
-    console.log("FETCHING DONE")
+    console.log("FETCHING DONE", result)
 
     return result;
 }
