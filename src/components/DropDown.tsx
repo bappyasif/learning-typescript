@@ -52,8 +52,10 @@ export const DropdownDemo = () => {
           <Menu.Item
             as="a"
             key={link.href}
-            href={link.href}
+            // href={link.href}
             className="ui-active:bg-blue-500 ui-active:text-white ui-not-active:bg-white ui-not-active:text-black block"
+            // menu does not have selected or checkked options, cause tehy are not semantically aligned with those kinds of functionalities
+            // ui-selected:bg-red-600 ui-not-selected:bg-red-800 ui-checked:bg-red-400
           >
             {link.label}
           </Menu.Item>

@@ -1,6 +1,9 @@
 "use client"
 
 import { DropDown, DropdownDemo } from '@/components/DropDown'
+import { MyListbox, MyListboxHorizontal } from '@/components/ListItems'
+import TabsList from '@/components/TabsList'
+import ToggleButtonExample, { DisclosureDemo } from '@/components/ToggleButton'
 import React from 'react'
 
 
@@ -10,6 +13,11 @@ const HeadlessUiDemoPage = () => {
         <h1>HeadlessUiDemoPage</h1>
         <DropDown />
         <DropdownDemo />
+        <MyListbox />
+        <MyListboxHorizontal />
+        <ToggleButtonExample />
+        <DisclosureDemo />
+        <TabsList />
     </div>
   )
 }
