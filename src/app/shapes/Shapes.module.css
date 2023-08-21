@@ -1,0 +1,19 @@
+.one::before,
+.one::after {
+    content: "";
+    background-color: black;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: -44px;
+}
+
+.one::before {
+    right: 47%;
+    transform: skew(0, 20deg);
+}
+
+.one::after {
+    right: 44%;
+    transform: skew(0, -20deg);
+}

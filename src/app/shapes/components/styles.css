@@ -1,0 +1,16 @@
+.image_clip {
+    clip-path: circle(50%);
+}
+
+.image_clip_2 {
+    /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0, 100%); */
+    /* clip-path: polygon(20px 110px, 100% 0, 100% 100%, 0, 100%); */
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+.background_clipping {
+    /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); */
+    /* clip-path: polygon(0 0, 100% 0, 100% calc(100% - 11.56vw), 0 100%); */
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20%), 0 100%);
+    margin-bottom: -101px;
+}

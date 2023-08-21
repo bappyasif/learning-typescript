@@ -5,7 +5,7 @@ import { AlertDialogDemo, AlertDialogDemoTwo } from './components/UsingAlert'
 
 const ShaduiPage = () => {
     return (
-        <div>
+        <div className='w-[650px]'>
             <h1>ShaduiPage</h1>
             <ButtonWithIcon />
             <ButtonComp />

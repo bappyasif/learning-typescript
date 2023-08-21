@@ -6,6 +6,11 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Link href={"/hsui"}>hsui</Link>
       <Link href={"/shadui"}>shadui</Link>
+      <Link href={"/lines"}>lines</Link>
+      <Link href={"/shapes"}>Shapes</Link>
     </main>
   )
 }
+
+
+// https://dribbble.com/shots/21350867-Fashion-Brand-Website-Transition

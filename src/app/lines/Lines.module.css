@@ -1,0 +1,151 @@
+.test {
+    font-size: 4rem;
+}
+
+.my_element {
+    position: relative;
+    z-index: 0;
+}
+
+.my_element::after {
+    /* we want to draw a line, so no content needed */
+    content: '';
+
+    /* this sets the position and size of the pseudo-element */
+    position: absolute;
+    top: 69%;
+    width: 100%;
+    /* width: 40px; */
+    height: 2px;
+    background-color: palevioletred;
+
+    /* draw behind child elements */
+    z-index: -1;
+}
+
+.my_element::before {
+    /* we want to draw a line, so no content needed */
+    content: '';
+
+    /* this sets the position and size of the pseudo-element */
+    position: absolute;
+    top: 26%;
+    width: 100%;
+    /* width: 200px; */
+    height: 2px;
+    background-color: sienna;
+
+    /* draw behind child elements */
+    z-index: -1;
+}
+
+/* We can avoid absolute positioning issue by using a border like this */
+.my_element_2 {
+    /* inset CSS property is a shorthand that corresponds to the top, right, bottom, and/or left properties */
+    box-shadow: inset 0 2px 0 4px #777;
+    color: blueviolet;
+
+    position: relative;
+    z-index: 1;
+}
+
+.my_element_2::before {
+    content: '';
+
+    position: absolute;
+    top: 40%;
+    z-index: -1;
+
+    display: block;
+    width: 100%;
+    /* padding-top: 2.5rem; */
+    margin-bottom: -2.5rem;
+    border-bottom: 8px solid red;
+
+}
+
+/* 
+Background images
+We can use linear-gradient, radial-gradient, and conic-gradient to “generate” background images. Combined with background-size, background-position, and background-repeat we can use these gradients to “cheat” and draw a simple line
+ */
+.my_element_3 {
+    /* background-image: linear-gradient(pink, pink); */
+    background-image: linear-gradient(yellow, red);
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+    background-position: 0 center;
+}
+
+/* 
+    This is a lot cleaner already, we can make this even better by creating a separate decorative-line class and defining a couple CSS properties.
+  */
+
+.decorative_line {
+    background-image: linear-gradient(var(--line-color), var(--line-color));
+    background-repeat: no-repeat;
+    background-size: 100% var(--line-height);
+    background-position: 0 center;
+}
+
+/* 
+    Now we can apply the decorative-line class to an element and set the --line-color and --line-height properties to style it
+ */
+ .my_element_4 {
+    background-image: linear-gradient(
+        to right,
+        blue,
+        white 35%,
+        white 20%,
+        salmon
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+    background-position: 0 center;
+}
+
+.decorative_line_2 {
+    background-image: linear-gradient(var(--line-color), var(--line-color));
+    background-repeat: no-repeat;
+    background-size: 100% var(--line-height);
+    background-position: 0 center;
+}
+
+.decorative_line_2 {
+    --line-color: cyan;
+    --line-height: 2px;
+}
+
+/* .my_element_5 .decorative_line_3 {
+    background-image: linear-gradient(var(--line-color), var(--line-color));
+    background-repeat: no-repeat;
+    background-size: 100% var(--line-height);
+    background-position: 0 center;
+}
+
+.my_element_5 {
+    --line-color: cyan;
+    --line-height: 2px;
+} */
+
+
+/* 
+We can still set a background color and have multiple other background images on the target element.
+ */
+
+ .my_element_6 {
+    background-color: lavenderblush;
+    background-image: linear-gradient(pink, pink), linear-gradient(palevioletred, palevioletred);
+    background-size: 100% 2px, 2px 100%;
+    background-position: 0 center, 25% 0;
+    background-repeat: no-repeat;
+}
+
+
+/* We can also set background images using SVGs but unfortunately we cannot use CSS variables inside the SVG data URI. */
+.my_element_7 {
+    /* z-index: -1; */
+    background-image: url('data:image/svg+xml,\
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100% 100%">\
+      <rect x="0" y="50%" width="100%" height="2px" fill="pink"/>\
+    </svg>');
+}
