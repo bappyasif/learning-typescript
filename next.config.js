@@ -10,12 +10,7 @@ const nextConfig = {
                 pathname: '/img/**',
             },
         ],
-    },
-    plugins: [
-        // ...
-        require('@tailwindcss/aspect-ratio'),
-        require('@tailwindcss/forms'),
-    ]
+    }
 }
 
 module.exports = nextConfig
