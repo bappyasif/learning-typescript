@@ -1,0 +1,90 @@
+.blocks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 450px;
+    /* height: 850px; */
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.first_block_top_side {
+    position: absolute;
+    content: "a";
+    height: 150px;
+    width: 100%;
+    /* background-color: red; */
+    font-size: xx-large;
+    top: 0;
+}
+
+.fbts_block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 0;
+}
+
+.fbts_block svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 65px;
+    /* transform: rotateY(180deg); */
+}
+
+.fbts_block .shape_fill {
+    fill: #a07651;
+}
+
+.first_block_bottom_side,
+.second_block_top_side,
+.second_block_bottom_side {
+    aspect-ratio: 900/90;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* z-index: -1; */
+    position: absolute;
+    opacity: 20;
+}
+
+.first_block_bottom_side,
+.second_block_top_side {
+    height: 15%;
+}
+
+.first_block_bottom_side,
+.second_block_bottom_side {
+    bottom: 0;
+}
+
+.second_block_top_side {
+    top: 0;
+}
+
+.second_block_bottom_side {
+    transform: rotate(180deg);
+    height: 36%;
+}
+
+.fbbs_svgLayer {
+    background-image: url("../../../../public/wave-steped.svg");
+}
+
+.sbts_svgLayer {
+    /* background-image: url("../../../../public/wave-block2-head.svg"); */
+    background-image: url("../../../../public/stacked-waves-b2bs.svg");
+}
+
+.sbbs_svgLayer {
+    /* background-image: url("../../../../public/stacked-waves-b2bs.svg"); */
+    background-image: url("../../../../public/wave-block2-head.svg");
+}

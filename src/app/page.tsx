@@ -9,6 +9,7 @@ export default function Home() {
       <Link href={"/lines"}>lines</Link>
       <Link href={"/shapes"}>Shapes</Link>
       <Link href={"/curves"}>Curves</Link>
+      <Link href={"/withCurves"}>With Curves</Link>
     </main>
   )
 }
