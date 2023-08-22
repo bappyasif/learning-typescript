@@ -8,6 +8,7 @@ export default function Home() {
       <Link href={"/shadui"}>shadui</Link>
       <Link href={"/lines"}>lines</Link>
       <Link href={"/shapes"}>Shapes</Link>
+      <Link href={"/curves"}>Curves</Link>
     </main>
   )
 }
