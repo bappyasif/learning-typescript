@@ -12,6 +12,7 @@ export default function Home() {
       <Link href={"/withCurves"}>With Curves</Link>
       <Link href={"/parallax"}>Parallax Effect</Link>
       <Link href={"/layouts"}>Few Layouts</Link>
+      <Link href={"/cards"}>Few Cards</Link>
     </main>
   )
 }
