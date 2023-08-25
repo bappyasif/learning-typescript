@@ -13,6 +13,7 @@ export default function Home() {
       <Link href={"/parallax"}>Parallax Effect</Link>
       <Link href={"/layouts"}>Few Layouts</Link>
       <Link href={"/cards"}>Few Cards</Link>
+      <Link href={"/particles"}>Particles</Link>
     </main>
   )
 }
