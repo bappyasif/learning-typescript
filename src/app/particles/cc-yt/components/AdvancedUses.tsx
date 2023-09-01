@@ -72,7 +72,7 @@ const AnimateRandomizedParticlesOnClickImproved = () => {
                 const dy = particle.y - partciles[j].y
                 const distacnce = Math.sqrt((dx * dx) + (dy * dy))
 
-                if(distacnce < 40) {
+                if(distacnce < 99) {
                     ctx?.beginPath();
                     (ctx!!).strokeStyle = particle.colorVar;
                     // (ctx!!).lineWidth = particle.size / 10;
@@ -110,8 +110,8 @@ const AnimateRandomizedParticlesOnClickImproved = () => {
 
     useEffect(() => {
         // partciles.length > 2 && partciles.length < 29 && animateParticles()
-        animateParticles()
-        partciles.length > 42 && setParticles([])
+        partciles.length && animateParticles()
+        partciles.length > 200 && setParticles([])
     }, [partciles])
 
     const setWidthAndHeight = (canvas: HTMLCanvasElement) => {
@@ -135,9 +135,13 @@ const AnimateRandomizedParticlesOnClickImproved = () => {
 
         // console.log("HERE!!", partciles.length)
 
-        for (let i = 0; i < 40; i++) {
-            // temp.push(new Particle(document.querySelector("#canvas-7") as HTMLCanvasElement))
-            setParticles(prev => [...prev, new Particle(document.querySelector("#canvas-9") as HTMLCanvasElement)])
+        if(partciles.length < 200) {
+            for (let i = 0; i < 8; i++) {
+                // temp.push(new Particle(document.querySelector("#canvas-7") as HTMLCanvasElement))
+                setParticles(prev => [...prev, new Particle(document.querySelector("#canvas-9") as HTMLCanvasElement)])
+            }
+        } else {
+            setParticles([])
         }
     }
 

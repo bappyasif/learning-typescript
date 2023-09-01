@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
-export const AdvancedUsesV2 = () => {
-    return (
-        <div>
-            AdvancedUsesV2
-            <AnimateRandomizedParticlesOnClickImproved />
-        </div>
-    )
+export const AdvancedUsesV3 = () => {
+  return (
+    <div>
+        <h2>AdvancedUsesV3</h2>
+        <AnimateRandomizedParticlesOnClickImproved />
+    </div>
+  )
 }
+
 
 const mouse = {
     x: 100,
@@ -66,25 +67,22 @@ const AnimateRandomizedParticlesOnClickImproved = () => {
         partciles.forEach((particle, idx) => {
             particle.update();
             particle.draw();
-            
-            for (let j = idx; j < partciles.length; j++) {
-                const dx = particle.x - partciles[j].x;
-                const dy = particle.y - partciles[j].y;
-                const distance = Math.sqrt((dx * dx) + (dy * dy))
+            // finding constollation distance between two nodes, using pythagorian thorem
+            for(let j = idx; j < partciles.length; j++) {
+                const dx = particle.x - partciles[j].x
+                const dy = particle.y - partciles[j].y
+                const distacnce = Math.sqrt((dx * dx) + (dy * dy))
 
-                if(distance < 40) {
+                if(distacnce < 99) {
                     ctx?.beginPath();
                     (ctx!!).strokeStyle = particle.colorVar;
-                    (ctx!!).lineWidth = .6;
-
-                    ctx?.moveTo(particle.x, particle.y)
-                    ctx?.lineTo(partciles[j].x, partciles[j].y)
-                    ctx?.stroke()
-
-                    // ctx?.closePath()
+                    // (ctx!!).lineWidth = particle.size / 10;
+                    (ctx!!).lineWidth = .5;
+                    ctx?.moveTo(particle.x, particle.y);
+                    ctx?.lineTo(partciles[j].x, partciles[j].y);
+                    ctx?.stroke();
                 }
             }
-
             // if particles go beyond a certain size we will remove it here from array
             if (particle.size > 0.0 && particle.size <= 0.11) {
                 partciles.splice(idx, 1)
@@ -94,10 +92,10 @@ const AnimateRandomizedParticlesOnClickImproved = () => {
     }
 
     const animateParticles = () => {
-        (ctx !!).clearRect(0, 0, canvas?.width as number, canvas?.height as number)
+        (ctx !!)?.clearRect(0, 0, canvas?.width as number, canvas?.height as number)
         // (ctx!!).fillStyle = "black";
-        
         // (ctx!!).fillStyle = "rgba(0,0,0,.01)";
+        // (ctx as CanvasRenderingContext2D).fillStyle = "rgba(0,0,0,.01)";
         // ctx?.fillRect(0, 0, (canvas!!).width, (canvas!!).height)
 
         // increasing hue after each animation so that it covers all of its color pallets
@@ -112,8 +110,13 @@ const AnimateRandomizedParticlesOnClickImproved = () => {
     }
 
     useEffect(() => {
+        // partciles.length > 2 && partciles.length < 29 && animateParticles()
         partciles.length && animateParticles()
-        partciles.length > 200 && setParticles([])
+        partciles.length > 1000 && setParticles([])
+
+        const timer = setInterval(init, 4900)
+        partciles.length && timer
+        return () => clearInterval(timer)
     }, [partciles])
 
     const setWidthAndHeight = (canvas: HTMLCanvasElement) => {
@@ -124,7 +127,7 @@ const AnimateRandomizedParticlesOnClickImproved = () => {
     }
 
     const initialConfig = () => {
-        const canvasEl = document.querySelector("#canvas-10") as HTMLCanvasElement
+        const canvasEl = document.querySelector("#canvas-9") as HTMLCanvasElement
         const cCtx = canvasEl.getContext("2d") as CanvasRenderingContext2D
         setCtx(cCtx)
         setCanvas(canvasEl)
@@ -135,42 +138,57 @@ const AnimateRandomizedParticlesOnClickImproved = () => {
         mouse.x = event.clientX
         mouse.y = event.clientY
 
-        if (partciles.length < 80) {
-            for (let i = 0; i < 2; i++) {
+        // console.log("HERE!!", partciles.length)
+
+        if(partciles.length < 800) {
+            for (let i = 0; i < 4; i++) {
                 // temp.push(new Particle(document.querySelector("#canvas-7") as HTMLCanvasElement))
-                setParticles(prev => [...prev, new Particle(document.querySelector("#canvas-10") as HTMLCanvasElement)])
+                setParticles(prev => [...prev, new Particle(document.querySelector("#canvas-9") as HTMLCanvasElement)])
             }
         } else {
             setParticles([])
         }
     }
 
+    const init = () => {
+        // setParticles([])
+        for(let i=0; i<40; i++) {
+            const newParticle = new Particle(canvas!!)
+            setParticles(prev => [...prev, newParticle])
+        }
+    }
+
+    useEffect(() => {
+        canvas && init()
+    }, [canvas])
+
     useEffect(() => {
         initialConfig()
     }, [])
 
+    // animateParticles()
+
     return (
         <div>
             <canvas
-                id='canvas-10'
-                onClick={event => {
-                    mouse.x = event.clientX
-                    mouse.y = event.clientY
+                id='canvas-9'
+                // onClick={event => {
+                //     mouse.x = event.clientX
+                //     mouse.y = event.clientY
 
-                    const temp = []
-                    setParticles([])
+                //     const temp = []
 
-                    for (let i = 0; i < 10; i++) {
-                        temp.push(new Particle(document.querySelector("#canvas-10") as HTMLCanvasElement))
-                        // setParticles(prev=> [...prev, new Particle(document.querySelector("#canvas-7") as HTMLCanvasElement)])
-                    }
+                //     for (let i = 0; i < 20; i++) {
+                //         temp.push(new Particle(document.querySelector("#canvas-9") as HTMLCanvasElement))
+                //         // setParticles(prev=> [...prev, new Particle(document.querySelector("#canvas-7") as HTMLCanvasElement)])
+                //     }
 
-                    console.log(temp.length, partciles.length)
-                    setParticles([...temp])
+                //     // console.log(temp.length, partciles.length)
+                //     setParticles([...temp])
 
-                }}
+                // }}
 
-                onMouseMove={e => mouseMoveHandler(e)}
+                onMouseMove={ e => mouseMoveHandler(e) }
             ></canvas>
         </div>
     )
